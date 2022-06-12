@@ -1,4 +1,6 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HousingService } from '../services/housing.service';
 
 @Component({
   selector: 'app-property-list',
@@ -7,61 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyListComponent implements OnInit {
 
-  properties : Array<any> =[
-    {
-      "id":1,
-      "Type" : "House1",
-      "Price":35353,
-      "Name":"Noida"
-    },
-    {
-      "id":2,
-      "Type" : "House2",
-      "Price":35353,
-      "Name":"Delhi"
-    },
-    {
-      "id":7,
-      "Type" : "House5",
-      "Price":35353,
-      "Name":"Lko"
-    },
-    {
-      "id":4,
-      "Type" : "House",
-      "Price":35353,
-      "Name":"Noida"
-    },
-    {
-      "id":3,
-      "Type" : "House",
-      "Price":35353,
-      "Name":"Noida"
-    },
-    {
-      "id":4,
-      "Type" : "House",
-      "Price":35353,
-      "Name":"Noida"
-    },
-    {
-      "id":3,
-      "Type" : "House",
-      "Price":35353,
-      "Name":"Noida"
-    },
-    {
-      "id":4,
-      "Type" : "House",
-      "Price":35353,
-      "Name":"Noida"
-    },
-
-  ]
-
-  constructor() { }
+  properties: any;
+  constructor(private housing:HousingService ) { }
 
   ngOnInit(): void {
+    this.housing.getallproperties().subscribe(
+      data =>{
+        this.properties = data
+      },error =>{
+        console.log(error);
+      }
+    )
   }
 
 }

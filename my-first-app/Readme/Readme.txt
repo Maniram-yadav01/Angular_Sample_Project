@@ -13,3 +13,10 @@ install bootstrap
 
 Link for icon: https://fontawesome.com/icons
 
+Add a folder name data
+use     HttpClientModule  in app.module for use of service
+app ke bahar ke folder ko angular.json ke asset me define karna padta hai
+
+Create a service in app for exchange data between two component
+  ng g  service housing
+  register in app.module providers
