@@ -1,0 +1,239 @@
+100000169
+Mani@1234
+use web_udb
+
+select * from tbs_clientConnection
+select top 10 * from employee 
+select * from accessRigts
+
+Dependent
+division 
+benefitPlan
+
+https://github.com/Maniram01a/Angular_Project.git
+git remote set-url 
+
+git remote add origin https://github.com/Maniram01a/Angular_Project.git
+
+old UI PLuxPluse--------------------
+
+ActionNeeded : pending
+your profile :Employee's data
+  personal
+  dependence
+  preferences
+  
+Confirmation statement - code
+beneficiary -code  
+
+Enrollment: Period
+  
+     1)life event enrollment - Pending / past  -- all time open
+         start - choose life event pag	 
+	 2)annuual enrollment  Future - 1 month - dependent add 1 dec to 31 dec
+	 3)new hire  current, - yearinsystem  -0  , 1 months open
+	 
+Enviroments:
+    dev/staging  developer
+	Qa - Qa tester - Qa pass read for Qc
+	Qc - Teating Team   -Bussiness - requirement
+	Prod  Production /live  - client Employee
+	
+--------------day 2 -----------
+Bonus page 
+retirement page
+
+
+cms
+
+db:
+
+use Webs_udb
+Select * from Tbs_clientconnection where clientname = 'accenture'
+
+store procudere:
+important table related employee
+  1)employee
+  2)Division // 
+  3)Benefitplandetails
+
+
+
+Setup
+  Clientspecificvariable
+  benefitplandictionary
+
+--------------------------------Old UI---------------------
+action needed : remainder type code
+your profile : employee data  code
+  Personal
+  Dependents
+  Preferences
+Enrollment: Period
+  
+         1)life event enrollment - Pending / past  -- all time open
+         
+	 2)annuual enrollment  Future - 1 month - dependent add 1 dec to 31 dec
+	 3)new hire  current, - yearinsystem  -0  , 1 months open
+Enrolement : flow  of LE
+   1)LE:
+        2)Choose life event
+           3)desclaimer
+              step 1: add / edit dependent
+              step2 : choose Benefits 
+                   assign flex credit
+                   choose beneficiry
+               step3:
+                  Confirm choice
+Flexible benefits:
+   1) Plan Documents 
+   2) Confirmation statements:
+   3) beneficiary updates:
+   4) making changes
+flex bachne pr assign felx hota hai 
+-------------------new ui-----------------------------------
+same service used new UI
+webtier10 --old ui
+FPDAnular -- new ui
+
+
+Enrolement : flow  of LE
+   1)LE:
+        2)Choose life event
+           3)desclaimer
+              step 1: add / edit dependent
+              step2 : choose Benefits 
+                   assign flex credit
+                   choose beneficiry
+               step3:
+                  Confirm choice
+
+         
+
+use Kentico_canada
+Select * from sys_table  where name like '%Layout%
+
+Flex :Flex asign
+
+Folder structure of new UI:
+  Angualr
+	   src
+		   shared
+			 app.setting.ts:
+				app.setting.ts:all function are declared
+			translation-resources.ts: declare text
+	service:
+	  FlexPlusDirectApi
+-------------------- date 13/07/2022 ---------------------
+	  
+session-storage-helpher.ts		 
+Helper
+global.ts:session variabl hote hai 
+
+table : enrollmet stepper:
+  
+ 
+  
+FlexpluseDirectAPI
+
+------------------------------------------------------- kentico training -----------------------------
+What is kentico : https://www.youtube.com/watch?v=hds8GLvOp8c
+kt:cms tool ,site info
+db  for kentco 
+   Kentico_canada
+  table
+  
+style :
+    sheet : har client ki ek css hoti hai 
+	
+licence : domain entry dalte hai
+
+----------------------------users: ----------------------------------------------------
+    ek  client ke kai sare emplooyee ki enty hoti hai 
+		user ki entry ke liye : 
+		 
+		flexPlus
+			 main 
+				database
+				   trunk
+					 adhoc-script
+					   Kentico
+					      KenticoUserDataClean and load
+		table 
+		general :
+        custom field:  
+		     IsRegister
+		     ProfileCimplete
+        isRegistered
+        profile complete
+        setting:
+        site
+TenantId -- 9795
+How to Set password:
+   user
+    password
+	  set password
+------------------------------------------------------------------------------------------
+localization: text handle
+custom table 
+  client setting
+  jit role
+  client layout
+  AonSit
+eventlog:
+ kenticalog.cs me function bana hai
+ 
+Roles : division ke according ek role dete hai kentico aur code dono se bhi kar sake hai ,
+------------------------------------------------
+database name 
+    Web-udb  : all client details
+--------------------------------------------------
+pages: 
+  static page
+     editable
+  dynamic
+  
+ jitrle divisionId se ap hota hai 
+ 
+---------------------------------------------
+form:
+metadata: 
+security : 
+for template
+	webpart
+	  template 
+	  
+wep part 
+------------------------------------------
+---------------------------------------------------admin : --------------
+next year
+Flex
+Eoi:
+audit : action perform
+contribution :
+benifit
+     wave benifit
+    terminate benifite
+recalculation:
+banking details
+HRIS: bulk load
+    HRIs vaidation me error recrd hoti hai
+    hris comparision
+    hris import ye employee table data insert karta hai
+    file upload : for bulk upload
+    new hire
+    transfer division : upgrade
+setup: add rehired
+reports:
+   report builder:
+       customize report deta hai
+   client note : 
+pending subscription table
+employeeSubscriptions : Table
+Enrollment;
+  freezing
+  recalculate
+  default incomlete
+job tracking: 
+exports
+setup
