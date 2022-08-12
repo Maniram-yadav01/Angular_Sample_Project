@@ -1,0 +1,79 @@
+.table {
+
+    border-radius: 5px;
+
+    width: 80%;
+
+    margin: 0px auto;
+
+    float: none;
+
+}
+
+body::before{
+    position:absolute;
+    top : 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    content:"";
+    pointer-events: none;
+    z-index:100;
+    opacity: .5
+}
+.pl{
+  padding-left: 22px;
+  /* text-align: center; */
+
+}
+.pd{
+    padding-left: 15px;
+}
+.p{
+    margin-left: 147px;
+}
+.mi{
+
+    margin-top:2px
+}
+.pi{
+    
+    height: 100px;
+    width: 194px;
+    text-align: center;
+    margin-bottom: 2px;
+
+}
+.flex-container {
+    display: flex;
+    margin: 3px;
+    padding: 1px;
+    
+}
+
+.flex-child {
+    flex: 1;
+    border: 2px solid black;
+    text-align: center;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+}
+
+.wd{
+    width: 10px;
+}
+.zoom {
+    /* padding: 5px; */
+    /* background: green; */
+    transition: transform .2s; /* Animation */
+     width: 2px;
+    height: 2px; 
+    margin: 0 auto;
+  }
+  
+  .zoom:hover {
+    transform: scale(1.03); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }

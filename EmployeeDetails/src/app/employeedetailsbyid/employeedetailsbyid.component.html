@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="jumpotron">
+        <div class="card">
+
+            <div class="card-body">
+                <h5 class="text-center border-bottom background-color">About</h5>
+                
+                    <div  class="container" *ngFor="let item of employeedata">
+                     
+                        <ng-template [ngIf]="item.id == empId">
+                            <diV class="mb-10 ">
+                                <label class = "bold-color">Id: </label>
+                                <label class = "pd">{{item.id}}</label>
+                            </diV>
+
+                            <diV class="mb-10 ">
+                                <label class = "bold-color">Name: </label>
+                                <label class = "pd">{{item.employee_name}}</label>
+                            </diV>
+                        
+                            <diV class="mb-10">
+                                <label  class = "bold-color">Salary: </label>
+                             <label class = "pd">{{item.employee_salary}}</label>
+                            </diV>
+                            
+                            <diV class="mb-10">
+                                <label  class = "bold-color">Age: </label>
+                                <label class = "pd">{{item.employee_age}}</label>
+                            </diV>
+
+                        </ng-template>
+                    </div>
+                    <!-- <thead class = "table-dark">
+              <tr>
+                
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Salary</th>
+                <th scope="col">img</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="" *ngFor="let item of employeedata">
+
+                <ng-template [ngIf]="item.id == empId">
+                <td>{{item.id}}</td>
+                <td>{{item.employee_name}}</td>
+                <td>{{item.employee_age}}</td>
+                <td>{{item.employee_salary}}</td>
+                <td>{{item.profile_image}}</td>
+               </ng-template>
+
+              </tr>
+              
+            </tbody> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class = "text-center mt-3">
+    <button class = "btn btn-primary" (click) = "back()">Back</button>
+</div>

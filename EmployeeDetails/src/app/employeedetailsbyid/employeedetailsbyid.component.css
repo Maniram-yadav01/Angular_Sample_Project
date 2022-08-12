@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.bold-color{
+    font-weight: bold;
+}
+.mb-10{
+    margin-bottom: 10px;
+}
+.border-bottom{
+    border-bottom: 2px solid black !important;
+}
+
+.background-color{
+    background-color: #c9c9dd;
+}
+.pd{
+    padding-left: 16px;
+}
