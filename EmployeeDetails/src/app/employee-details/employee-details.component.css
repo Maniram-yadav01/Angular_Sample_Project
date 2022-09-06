@@ -9,6 +9,10 @@
     float: none;
 
 }
+/* .table-wh {
+    width: 400px;
+    height: 196px;
+} */
 
 body::before{
     position:absolute;

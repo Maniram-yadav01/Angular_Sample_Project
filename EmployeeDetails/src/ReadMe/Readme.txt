@@ -293,3 +293,18 @@ Dummy api : https://dummyjson.com/
 
 <div class="zoom"></div>
 
+=================================================================
+font awesome for icon : https://fontawesome.com/icons
+=================================================================
+
+===========================================================
+bootstrap icon
+
+ npm i bootstrap-icons --save
+Then add this line to your styles.css file:
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+From now on you can use it anywhere in your app, just like intended by the bootstrap documentation:
+
+<i class="bi bi-star-fill"></i>
+

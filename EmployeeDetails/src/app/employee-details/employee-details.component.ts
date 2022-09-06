@@ -81,23 +81,23 @@ export class EmployeeDetailsComponent implements OnInit {
    }
   
     // name sort
-    sortByName()
-    { 
-      this.data2 = this.data2.sort((a:any, b:any) => a.employee_name.localeCompare(b.employee_name));
+    // sortByName()
+    // { 
+    //   this.data2 = this.data2.sort((a:any, b:any) => a.employee_name.localeCompare(b.employee_name));
       
      
-    }
-    sortByAge()
-    { 
-      this.data2 = this.data2.sort((a:any, b:any) => a.employee_age-b.employee_age);
+    // }
+    // sortByAge()
+    // { 
+    //   this.data2 = this.data2.sort((a:any, b:any) => a.employee_age-b.employee_age);
       
      
-    }
-    sortBySalary()
-    { 
-      this.data2 = this.data2.sort((a:any, b:any) => a.employee_salary-b.employee_salary);
+    // }
+    // sortBySalary()
+    // { 
+    //   this.data2 = this.data2.sort((a:any, b:any) => a.employee_salary-b.employee_salary);
       
      
-    }
+    // }
   
 }
