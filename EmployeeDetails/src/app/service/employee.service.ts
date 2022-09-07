@@ -9,14 +9,17 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
 
   constructor(private http:HttpClient) { }
+  
+  // employees data api
   getData()
   {
     let url = "https://dummy.restapiexample.com/api/v1/employees";
     return this.http.get(url);
   }
-  // getImage()
-  // {
-  //   let url = "https://jsonplaceholder.typicode.com/photos";
-  //   return this.http.get(url);
-  // }
+  // image api
+  getImage()
+  {
+    let url = "https://dummyjson.com/users";
+    return this.http.get(url);
+  }
 }

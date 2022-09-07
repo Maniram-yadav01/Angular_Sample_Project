@@ -1,52 +1,54 @@
 <div class="container">
   <div class="jumpotron">
-    
-        <h5 class="text-center">Employee Details</h5>
-        <table class="table  table-hover table-bordered table-sm table-wh">
-          <thead class="table-dark">
-            <tr>
 
-              <th class="text-center"  scope="col" >Id</th>
-              <th class="" scope="col" [appSort]="data2" data-order="desc" data-name="employee_name" >Name
-                <!-- sorting icon using bootstrap -->
-                <i class="bi bi-sort-alpha-down"></i>
-                
-              </th>
-              <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_age">Age
-                <!-- sorting icon using bootstrap -->
-                <i class="bi bi-sort-down-alt"></i>
-              </th>
-              
-              <th class="text-center " scope="col" [appSort]="data2" data-order = "desc" data-name="employee_salary">Salary
-                <!-- sorting icon using bootstrap -->
-                <i class="bi bi-sort-down-alt"></i>
-              </th>
-              <th class="text-center" scope="col">Get Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="zoom" *ngFor="let item of data2 | paginate: { itemsPerPage: count, currentPage: p }">
+    <h5 class="text-center">Employee Details</h5>
+    <table class="table  table-hover table-bordered table-sm table-wh">
+      <thead class="table-dark">
+        <tr>
 
-              <td class="text-center " >{{item.id}}</td>
-              <td>{{item.employee_name}}</td>
-              <td class="text-center">{{item.employee_age}}</td>
-              <td class="text-center">{{item.employee_salary}}</td>
-              <td class="text-center" >
-                <a (click)="openMadal(item.id,item.employee_name)">
-                  <i class="fa-solid fa-circle-info text-left">
-                  </i>
-                </a>
-              </td>
-            </tr>
+          <th class="text-center" scope="col">Id</th>
+          <th class="" scope="col" [appSort]="data2" data-order="desc" data-name="employee_name">Name
+            <!-- sorting icon using bootstrap -->
+            <i class="bi bi-sort-alpha-down"></i>
 
-          </tbody>
-        </table>
-        <div class="text-center">
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
-        </div>
-      </div>
+
+
+          </th>
+          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_age">Age
+            <!-- sorting icon using bootstrap -->
+            <i class="bi bi-sort-down-alt"></i>
+          </th>
+
+          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_salary">Salary
+            <!-- sorting icon using bootstrap -->
+            <i class="bi bi-sort-down-alt"></i>
+          </th>
+          <th class="text-center" scope="col">Get Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="zoom" *ngFor="let item of data2 | paginate: { itemsPerPage: count, currentPage: p }">
+
+          <td class="text-center ">{{item.id}}</td>
+          <td>{{item.employee_name}}</td>
+          <td class="text-center">{{item.employee_age}}</td>
+          <td class="text-center">{{item.employee_salary}}</td>
+          <td class="text-center">
+            <a (click)="openMadal(item.id,item.employee_name)">
+              <i class="fa-solid fa-circle-info text-left">
+              </i>
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
- 
+  </div>
+</div>
+
 
 
 
@@ -57,63 +59,65 @@
     <div class="modal-content">
       <div class="modal-header bg-info text-white">
         <h5 class="modal-title p " id="exampleModalLabel">About : {{Name}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeModal()"></button>
       </div>
-      <div  *ngFor="let item of data2">
+      <div *ngFor="let item of data2">
         <!--
           for loop
         -->
         <ng-template [ngIf]="item.id == Id">
-              <div class="flex-container">
-                 <div class="flex-child magenta ">
-                    <div class="row align-items-start ">
-                        <diV class="col-md-6 ">
-                            <label class = "text-center">Id  : </label>
-                        </diV>
-                        <diV class="col-md-6">
-                            <label class = "">{{item.id}}</label>
-                        </diV>
-                    </div>
+          <div class="flex-container">
+            <!-- image -->
+            <div class="flex-child bg-img">
 
-                    <diV class="row align-items-start ">
-                          <div class="col-md-6">
-                              <label class = "">Name : </label>
-                            </div>
-                            <div class="col-md-6">
-                              <label class = "">{{item.employee_name}}</label>
-                          </div>
-                    </diV>
-                  
-                    <diV class="row align-items-start ">
-                          <div class="col-md-6">
-                            <label  class = "">Salary : </label>
-                          </div>
-                          <div class="col-md-6">
-                            <label class = "">{{item.employee_salary}}</label>
-                          </div>
-                    </diV>
-                      
-                    <diV class="row align-items-start ">
-                          <div class="col-md-6">
-                              <label  class = "">Age : </label>
-                          </div>
-                          <div class="col-md-6">
-                              <label class = "">{{item.employee_age}}</label>
-                          </div>
-                    </diV>
+              <div class="">
+                <div>
+                  <img class="pi" [src]="imagedata[Id].image">
                 </div>
-                <div class="flex-child magenta">
-                    <label>
-                      Photo
-                    </label>
-                    <div class="text-center" *ngFor="let img of imagedata">
-                       <div *ngIf="img.id==Id">
-                           <img class="pi" [src]="img['image']">
-                      </div>
-                    </div>
-                </div>
+              </div>
             </div>
-      </ng-template>
+            <!-- details -->
+            <div class="flex-child bg-details ">
+              <div class="row align-items-start ">
+                <diV class="col-md-6 ">
+                  <label class="">Id : </label>
+                </diV>
+                <diV class="col-md-6">
+                  <label class="" style="text-align: left;">{{item.id}}</label>
+                </diV>
+              </div>
+
+              <diV class="row align-items-start ">
+                <div class="col-md-6">
+                  <label class="">Name : </label>
+                </div>
+                <div class="col-md-6">
+                  <label class="">{{item.employee_name}}</label>
+                </div>
+              </diV>
+
+              <diV class="row align-items-start ">
+                <div class="col-md-6">
+                  <label class="">Salary : </label>
+                </div>
+                <div class="col-md-6">
+                  <label class="">{{item.employee_salary}}</label>
+                </div>
+              </diV>
+
+              <diV class="row align-items-start ">
+                <div class="col-md-6">
+                  <label class="">Age : </label>
+                </div>
+                <div class="col-md-6">
+                  <label class="">{{item.employee_age}}</label>
+                </div>
+              </diV>
+            </div>
+
+          </div>
+        </ng-template>
         <!--
          if loop
         -->
@@ -122,12 +126,8 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
-        
+
       </div>
     </div>
   </div>
 </div>
-
-
-
-

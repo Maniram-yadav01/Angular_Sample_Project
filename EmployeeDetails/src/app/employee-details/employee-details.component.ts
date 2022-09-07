@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../service/employee.service';
-import { imagedata } from './imagejson';
-// import { sortDirective } from './sortDirective';
 declare var window:any;
 
 @Component({
@@ -28,7 +26,7 @@ export class EmployeeDetailsComponent implements OnInit {
   Name :any;
   ldata:any;
   data2:any;
-  imagedata = imagedata;
+  imagedata :any
   constructor(private employee:EmployeeService,private router: Router) { 
     interface IEmployee{
       id:any,
@@ -43,19 +41,22 @@ export class EmployeeDetailsComponent implements OnInit {
  
 
   ngOnInit(): void {
-    
+    // fetch employees data
     this.employee.getData().subscribe((res:any)=>{
       
       this.employeedata = res.data;
       localStorage.setItem('ldata',JSON.stringify(this.employeedata));
       var data1:any = localStorage.getItem('ldata');
      this.data2 = JSON.parse(data1);
- 
-     
-    // this.imagedata = JSON.parse(this.imagedata);
-     //console.log(this.imagedata.description);
+
+      // get images
+     this.employee.getImage().subscribe((res:any) => {
+      this.imagedata = res.users;
+      
+     })
+
     });
-     //localStorage.setItem('ldata',JSON.stringify(this.employeedata));
+   
         var data1:any = localStorage.getItem('ldata');
       this.data2 = JSON.parse(data1);
       
@@ -80,24 +81,6 @@ export class EmployeeDetailsComponent implements OnInit {
      this.formModal.hide();
    }
   
-    // name sort
-    // sortByName()
-    // { 
-    //   this.data2 = this.data2.sort((a:any, b:any) => a.employee_name.localeCompare(b.employee_name));
-      
-     
-    // }
-    // sortByAge()
-    // { 
-    //   this.data2 = this.data2.sort((a:any, b:any) => a.employee_age-b.employee_age);
-      
-     
-    // }
-    // sortBySalary()
-    // { 
-    //   this.data2 = this.data2.sort((a:any, b:any) => a.employee_salary-b.employee_salary);
-      
-     
-    // }
+ 
   
 }
