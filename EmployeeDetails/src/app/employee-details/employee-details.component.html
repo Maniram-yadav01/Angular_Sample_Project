@@ -6,7 +6,7 @@
       <thead class="table-dark">
         <tr>
 
-          <th class="text-center " scope="col">Id</th>
+          <th class="text-center " scope="col"  [appSort]="data2" data-order="desc" data-name="id">Id</th>
           <th class="width" scope="col" [appSort]="data2" data-order="desc" data-name="employee_name">Name
             <!-- sorting icon using bootstrap -->
             <i class="bi bi-sort-alpha-down"></i>
@@ -57,7 +57,7 @@
     </div>
     <div class="text-align">
       <button type="button " class="btn btn-primary" (click)="getapi()">Reset</button>
-      <button type="button " class="btn btn-success m-1">Add Employees</button>
+      <button type="button " class="btn btn-success m-1"  (click)="openMadalAddEmployeee()">Add Employees</button>
     </div>
     
   </div>
@@ -67,7 +67,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal  for id card-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -141,6 +141,74 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal for add employees details -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEmployeeModal">Add Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="registerForm">
+          <!-- id -->
+          <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input type="id" formControlName="id" class="form-control" id="id" placeholder="id"
+              [ngClass]="{'is-invalid': registerForm.get('id')?.touched && registerForm.get('id')?.errors}">
+            <div *ngIf="registerForm?.get('id')?.touched && registerForm?.get('id')?.errors" class="invalid-feedback">
+              <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div>
+              <div *ngIf="registerForm?.get('id')?.errors?.['id']">Id must be a valid</div>
+
+            </div>
+          </div>
+          <!-- employee_name -->
+          <div class="mb-3">
+            <label for="employee_name" class="form-label">Employee Name</label>
+            <input type="text" formControlName="employee_name" class="form-control" id="employee_name" placeholder="employee_name"
+              [ngClass]="{'is-invalid': registerForm.get('employee_name')?.touched && registerForm.get('employee_name')?.errors}">
+            <div *ngIf="registerForm?.get('employee_name')?.touched && registerForm?.get('employee_name')?.errors"
+              class="invalid-feedback">
+              <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">Employee Name is required</div>
+              <div *ngIf="registerForm?.get('employee_name')?.errors?.['id']">Employee Name must be a text</div>
+
+            </div>
+          </div>
+          <!-- employee_age -->
+          <div class="mb-3">
+            <label for="employee_age" class="form-label">Employee Age</label>
+            <input type="text" formControlName="employee_age" class="form-control" id="employee_age" placeholder="employee_age"
+              [ngClass]="{'is-invalid': registerForm.get('employee_age')?.touched && registerForm.get('employee_age')?.errors}">
+            <div *ngIf="registerForm?.get('employee_age')?.touched && registerForm?.get('employee_age')?.errors"
+              class="invalid-feedback">
+              <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
+              <div *ngIf="registerForm?.get('employee_age')?.errors?.['id']">employee_age must be a text</div>
+
+            </div>
+          </div>
+          <!-- employee_salary -->
+          <div class="mb-3">
+            <label for="employee_salary" class="form-label">employee_salary</label>
+            <input type="id" formControlName="employee_salary" class="form-control" id="id" placeholder="employee_salary"
+              [ngClass]="{'is-invalid': registerForm.get('employee_salary')?.touched && registerForm.get('employee_salary')?.errors}">
+            <div *ngIf="registerForm?.get('employee_salary')?.touched && registerForm?.get('employee_salary')?.errors"
+              class="invalid-feedback">
+              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required</div>
+              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['employee_salary']">employee_salary must be a valid</div>
+
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"
+          (click)="addPost(registerForm.value,registerForm.value.id)"  [disabled]="!registerForm.valid">Save</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../service/employee.service';
-declare var window:any;
+declare var window: any;
+export interface IEmployee {
+  id: number,
+  employee_name: any,
+  employee_age: any,
+  employee_salary: number
+}
 
 @Component({
   selector: 'app-employee-details',
@@ -11,35 +18,32 @@ declare var window:any;
 
 export class EmployeeDetailsComponent implements OnInit {
 
-  public employeedata:any= [];
-  public employeeimage:any= [];
+  public employeedata: any = [];
+  public employeeimage: any = [];
 
   p: any = 1;
   count: any = 5;
-  EmpId :any;
-  pageSizeOptions="[5, 10, 25, 100]"
+  EmpId: any;
+  pageSizeOptions = "[5, 10, 25, 100]"
   // router: any;
-  sessiondata:any;
-  count1:number = 0;
-  formModal:any;
-  Id:any;
-  Name :any;
-  ldata:any;
-  data2:any;
-  imagedata :any
-  constructor(private employee:EmployeeService,private router: Router) {
-    interface IEmployee{
-      id:any,
-      name:any,
-      age:any
-    }
-
-  }
+  sessiondata: any;
+  count1: number = 0;
+  formModal: any;
+  addEmployeeFormModal: any;
+  Id: any;
+  Name: any;
+  ldata: any;
+  data2: any;
+  imagedata: any
+  registerForm!: FormGroup;
+  found: boolean = true;
+  constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) {}
+  
 
 
 
 
-
+  
   ngOnInit(): void {
     // fetch employees data
     var data1: any = localStorage.getItem('ldata');
@@ -49,12 +53,26 @@ export class EmployeeDetailsComponent implements OnInit {
       this.imagedata = res.users;
 
     })
-
+    // modal for id card
     this.formModal = new window.bootstrap.Modal(
       document.getElementById("exampleModal")
     );
+    // modal for add employee details
+    this.addEmployeeFormModal = new window.bootstrap.Modal(
+      document.getElementById("addEmployeeModal")
+    );
+    this.registerForm = this.buildForm();
   }
+  private buildForm() {
+    return this.formBuilder.group({
 
+      id: ['', [Validators.required]],
+      employee_name: ['', [Validators.required]],
+      employee_age: ['', [Validators.required]],
+      employee_salary: ['', [Validators.required]]
+
+    });
+  }
   openMadal(id: any, name: any) {
     this.Id = id;
     this.Name = name;
@@ -87,9 +105,32 @@ export class EmployeeDetailsComponent implements OnInit {
       }
       else
         index = index + 1;
-      
+
     }
   }
+// openMadalAddEmployeee
+  openMadalAddEmployeee() {
 
+    this.addEmployeeFormModal.show();
+  }
+  // add employee function
+  addPost(addEmpData: any, id: number): void {
+    for (let empData of this.data2) {
+      if (empData.id == id) {
+        alert("alraedy employee exist")
+        window.location.reload(); // for reload 
+        this.found = false;
+        break
+      }
+
+    }
+    if (this.found) {
+      this.data2.push(addEmpData);
+    console.log(this.data2);
+    localStorage.setItem('ldata', JSON.stringify(this.data2));
+      alert("added");
+      window.location.reload(); // for reload 
+    }
+  }
 
 }

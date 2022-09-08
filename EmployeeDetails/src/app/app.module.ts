@@ -7,7 +7,7 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EmployeedetailsbyidComponent } from './employeedetailsbyid/employeedetailsbyid.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { sortDirective } from './employee-details/sort.directive';
 
 const routes: Routes = [
@@ -30,7 +30,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:
    [RouterModule],
