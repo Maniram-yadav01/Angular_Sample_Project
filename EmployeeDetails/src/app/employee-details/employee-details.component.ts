@@ -13,12 +13,12 @@ export class EmployeeDetailsComponent implements OnInit {
 
   public employeedata:any= [];
   public employeeimage:any= [];
-  
+
   p: any = 1;
   count: any = 5;
   EmpId :any;
   pageSizeOptions="[5, 10, 25, 100]"
- // router: any;
+  // router: any;
   sessiondata:any;
   count1:number = 0;
   formModal:any;
@@ -27,60 +27,69 @@ export class EmployeeDetailsComponent implements OnInit {
   ldata:any;
   data2:any;
   imagedata :any
-  constructor(private employee:EmployeeService,private router: Router) { 
+  constructor(private employee:EmployeeService,private router: Router) {
     interface IEmployee{
       id:any,
       name:any,
       age:any
     }
-    
-  }
-  
-  
 
- 
+  }
+
+
+
+
 
   ngOnInit(): void {
     // fetch employees data
-    this.employee.getData().subscribe((res:any)=>{
-      
-      this.employeedata = res.data;
-      localStorage.setItem('ldata',JSON.stringify(this.employeedata));
-      var data1:any = localStorage.getItem('ldata');
-     this.data2 = JSON.parse(data1);
-
-      // get images
-     this.employee.getImage().subscribe((res:any) => {
+    var data1: any = localStorage.getItem('ldata');
+    this.data2 = JSON.parse(data1);
+    // get images
+    this.employee.getImage().subscribe((res: any) => {
       this.imagedata = res.users;
-      
-     })
 
-    });
-   
-        var data1:any = localStorage.getItem('ldata');
-      this.data2 = JSON.parse(data1);
-      
-      this.formModal = new window.bootstrap.Modal(
-        document.getElementById("exampleModal")
-     );
+    })
 
-    
-     
-    
-        
+    this.formModal = new window.bootstrap.Modal(
+      document.getElementById("exampleModal")
+    );
   }
-  
-  openMadal(id:any,name:any)
-  {
+
+  openMadal(id: any, name: any) {
     this.Id = id;
     this.Name = name;
-     this.formModal.show();
+    this.formModal.show();
   }
-   closeModal()
-   {
-     this.formModal.hide();
-   }
-  
- 
-  
+  closeModal() {
+    this.formModal.hide();
+  }
+
+  // get api data and store local storage 
+  getapi() {
+    this.employee.getData().subscribe((res: any) => {
+      this.employeedata = res.data;
+      //store data in  local storage
+      localStorage.setItem('ldata', JSON.stringify(this.employeedata));
+      var data1: any = localStorage.getItem('ldata');
+      this.data2 = JSON.parse(data1);
+
+    });
+  }
+
+  // delete array data  
+  deleteItem(Id: any) {
+    var index = 0;
+    for (var val of this.data2) {
+      if (val.id == Id) {
+        this.data2.splice(index, 1);
+        localStorage.setItem('ldata', JSON.stringify(this.data2));
+        break;
+      }
+      else
+        index = index + 1;
+      
+    }
+  }
+
+
 }
