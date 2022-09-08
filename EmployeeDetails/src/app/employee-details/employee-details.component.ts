@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IData } from '../modals/IEmployees';
 import { EmployeeService } from '../service/employee.service';
 declare var window: any;
 export interface IEmployee {
@@ -37,13 +38,19 @@ export class EmployeeDetailsComponent implements OnInit {
   imagedata: any
   registerForm!: FormGroup;
   found: boolean = true;
-  constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) {}
-  
+  id: any;
+  employee_salary: any;
+  employee_age: any;
+  employee_name: any;
+  editEmployeeDetails: any;
+
+  constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) { }
 
 
 
 
-  
+
+
   ngOnInit(): void {
     // fetch employees data
     var data1: any = localStorage.getItem('ldata');
@@ -61,6 +68,10 @@ export class EmployeeDetailsComponent implements OnInit {
     this.addEmployeeFormModal = new window.bootstrap.Modal(
       document.getElementById("addEmployeeModal")
     );
+    this.editEmployeeDetails = new window.bootstrap.Modal(
+      document.getElementById("editExampleModalLabel")
+    );
+
     this.registerForm = this.buildForm();
   }
   private buildForm() {
@@ -108,7 +119,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
     }
   }
-// openMadalAddEmployeee
+  // openMadalAddEmployeee
   openMadalAddEmployeee() {
 
     this.addEmployeeFormModal.show();
@@ -126,11 +137,50 @@ export class EmployeeDetailsComponent implements OnInit {
     }
     if (this.found) {
       this.data2.push(addEmpData);
-    console.log(this.data2);
-    localStorage.setItem('ldata', JSON.stringify(this.data2));
+      console.log(this.data2);
+      localStorage.setItem('ldata', JSON.stringify(this.data2));
       alert("added");
       window.location.reload(); // for reload 
     }
   }
 
+  //edit employees details
+  openEditMadal(id: any) {
+   
+    this.Id = id;
+   
+    for (var val of this.data2) {
+      if (val.id == this.Id) {
+
+        this.id = val.id;
+        this.employee_name = val.employee_name;
+        this.employee_age = val.employee_age;
+        this.employee_salary = val.employee_salary;
+
+        this.registerForm = this.formBuilder.group({
+
+          id: [id, [Validators.required]],
+          employee_name: [this.employee_name, [Validators.required]],
+          employee_age: [this.employee_age, [Validators.required]],
+          employee_salary: [this.employee_salary, [Validators.required]]
+
+        });
+      }
+      this.editEmployeeDetails.show();
+
+    }
+  }
+  // update edit values
+  updateValues(data: IData, id: any) {
+    for (let i = 0; i < this.data2.length; i++) {
+      if(this.data2[i].id == id){
+        this.data2[i] = data;
+        console.log(this.data2);
+        break;
+      }
+    }
+    localStorage.setItem('ldata', JSON.stringify(this.data2));
+   window.location.reload();
+
+  }
 }
