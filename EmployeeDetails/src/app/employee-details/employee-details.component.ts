@@ -43,6 +43,7 @@ export class EmployeeDetailsComponent implements OnInit {
   employee_age: any;
   employee_name: any;
   editEmployeeDetails: any;
+  deleteModal: any;
 
   constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) { }
 
@@ -68,6 +69,11 @@ export class EmployeeDetailsComponent implements OnInit {
     this.addEmployeeFormModal = new window.bootstrap.Modal(
       document.getElementById("addEmployeeModal")
     );
+    // open delete modal 
+    this.deleteModal = new window.bootstrap.Modal(
+      document.getElementById("exampleDeleteModal")
+    );
+
     this.editEmployeeDetails = new window.bootstrap.Modal(
       document.getElementById("editExampleModalLabel")
     );
@@ -124,6 +130,10 @@ export class EmployeeDetailsComponent implements OnInit {
 
     this.addEmployeeFormModal.show();
   }
+  // open delete modal
+  openDeleteMadal() {
+    this.deleteModal.show()
+  }
   // add employee function
   addPost(addEmpData: any, id: number): void {
     for (let empData of this.data2) {
@@ -146,9 +156,9 @@ export class EmployeeDetailsComponent implements OnInit {
 
   //edit employees details
   openEditMadal(id: any) {
-   
+
     this.Id = id;
-   
+
     for (var val of this.data2) {
       if (val.id == this.Id) {
 
@@ -161,7 +171,8 @@ export class EmployeeDetailsComponent implements OnInit {
 
           id: [id, [Validators.required]],
           employee_name: [this.employee_name, [Validators.required]],
-          employee_age: [this.employee_age, [Validators.required]],
+          employee_age: [this.employee_age, [Validators.required, Validators.pattern("^[0-9]*$"),
+          Validators.minLength(1)]],
           employee_salary: [this.employee_salary, [Validators.required]]
 
         });
@@ -170,17 +181,21 @@ export class EmployeeDetailsComponent implements OnInit {
 
     }
   }
+  // for validation
+  get f() {
+    return this.registerForm.controls;
+  }
   // update edit values
   updateValues(data: IData, id: any) {
     for (let i = 0; i < this.data2.length; i++) {
-      if(this.data2[i].id == id){
+      if (this.data2[i].id == id) {
         this.data2[i] = data;
         console.log(this.data2);
         break;
       }
     }
     localStorage.setItem('ldata', JSON.stringify(this.data2));
-   window.location.reload();
+    window.location.reload();
 
   }
 }

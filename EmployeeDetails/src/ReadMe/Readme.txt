@@ -421,5 +421,14 @@ deleteItem(Id: any) {
       // console.log("id"+id)
     }
   }
-  ==========================================================================================
+  ======================================================================================================
+  modification :       09/09/2022 
+    1) apply validation for number
+    2) use edit and delete icon
+    3) use up and down arrow for sorting  -- done 
+    4) add a modal for delete button
+
+    https://jasonwatmore.com/post/2020/07/07/angular-10-reactive-forms-validation-example
+    https://www.freecodecamp.org/news/how-to-validate-angular-reactive-forms/
+    https://www.itsolutionstuff.com/post/allow-only-numbers-in-textbox-using-angularexample.html
 

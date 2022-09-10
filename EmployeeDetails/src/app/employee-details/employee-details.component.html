@@ -16,12 +16,12 @@
           </th>
           <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_age">Age
             <!-- sorting icon using bootstrap -->
-            <i class="bi bi-sort-down-alt"></i>
+            <i class="bi bi-arrow-down-up"></i>
           </th>
 
           <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_salary">Salary
             <!-- sorting icon using bootstrap -->
-            <i class="bi bi-sort-down-alt"></i>
+            <i class="bi bi-arrow-down-up"></i>
           </th>
           <th class="text-center" scope="col">Get Details</th>
           <th class="text-center width-m" scope="col">Modify</th>
@@ -42,8 +42,11 @@
             </a>
           </td>
           <td class="text-center">
-            <button type="button" class="btn btn-primary" (click)="openEditMadal(item.id)">Edit</button>
-            <button type="button" class="btn btn-danger" (click)="deleteItem(item.id)">Delete</button>
+            <!-- edit button -->
+            <button type="button" class="btn btn-primary " (click)="openEditMadal(item.id)">
+              <i class="fa-solid fa-pen-to-square"></i></button>
+            <!-- delete button -->
+            <button type="button" class="btn btn-danger m-1" (click)="deleteItem(item.id)" ><i class="fa-solid fa-trash"></i></button>
           </td>
         </tr>
         <tr>
@@ -261,7 +264,7 @@
                 <div *ngIf="registerForm?.get('employee_age')?.touched && registerForm?.get('employee_age')?.errors"
                   class="invalid-feedback">
                   <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
-                  <div *ngIf="registerForm?.get('employee_age')?.errors?.['employee_age']">employee_age must be a valid</div>
+                  <div *ngIf="">employee_age must be a number</div>
                 </div>
               </div>
               <!-- employee_salary -->
@@ -286,6 +289,86 @@
         <button type="submit" class="btn btn-primary" (click)="updateValues(registerForm.value,registerForm.value.id)"
           data-bs-dismiss="modal" [disabled]="!registerForm.valid">Save</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal  for delete button-->
+<div class="modal fade" id="exampleDeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title p " id="exampleDeleteModal">About : {{Name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeModal()"></button>
+      </div>
+      <div *ngFor="let item of data2">
+        <!--
+          for loop
+        -->
+        <ng-template [ngIf]="item.id == Id">
+          <div class="flex-container">
+            <!-- image -->
+            <div class="flex-child bg-img">
+
+              <div class="">
+                <div>
+                  <img class="pi" [src]="imagedata[Id].image">
+                </div>
+              </div>
+            </div>
+            <!-- details -->
+            <div class="flex-child bg-details ">
+              <div class="row align-items-start ">
+                <diV class="col-md-6 ">
+                  <label class="">Id : </label>
+                </diV>
+                <diV class="col-md-6">
+                  <label class="" style="text-align: left;">{{item.id}}</label>
+                </diV>
+              </div>
+
+              <diV class="row align-items-start ">
+                <div class="col-md-6">
+                  <label class="">Name : </label>
+                </div>
+                <div class="col-md-6">
+                  <label class="">{{item.employee_name}}</label>
+                </div>
+              </diV>
+
+              <diV class="row align-items-start ">
+                <div class="col-md-6">
+                  <label class="">Salary : </label>
+                </div>
+                <div class="col-md-6">
+                  <label class="">{{item.employee_salary}}</label>
+                </div>
+              </diV>
+
+              <diV class="row align-items-start ">
+                <div class="col-md-6">
+                  <label class="">Age : </label>
+                </div>
+                <div class="col-md-6">
+                  <label class="">{{item.employee_age}}</label>
+                </div>
+              </diV>
+            </div>
+
+          </div>
+        </ng-template>
+        <!--
+         if loop
+        -->
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+
       </div>
     </div>
   </div>
