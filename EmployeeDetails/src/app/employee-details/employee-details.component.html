@@ -6,7 +6,7 @@
       <thead class="table-dark">
         <tr>
 
-          <th class="text-center " scope="col"  [appSort]="data2" data-order="desc" data-name="id">Id</th>
+          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="id">Id</th>
           <th class="width" scope="col" [appSort]="data2" data-order="desc" data-name="employee_name">Name
             <!-- sorting icon using bootstrap -->
             <i class="bi bi-sort-alpha-down"></i>
@@ -46,7 +46,8 @@
             <button type="button" class="btn btn-primary " (click)="openEditMadal(item.id)">
               <i class="fa-solid fa-pen-to-square"></i></button>
             <!-- delete button -->
-            <button type="button" class="btn btn-danger m-1" (click)="deleteItem(item.id)" ><i class="fa-solid fa-trash"></i></button>
+            <button type="button" class="btn btn-danger m-1" (click)="openDeleteMadal(item.id)"><i
+                class="fa-solid fa-trash"></i></button>
           </td>
         </tr>
         <tr>
@@ -60,9 +61,9 @@
     </div>
     <div class="text-align">
       <button type="button " class="btn btn-primary" (click)="getapi()">Reset</button>
-      <button type="button " class="btn btn-success m-1"  (click)="openMadalAddEmployeee()">Add Employees</button>
+      <button type="button " class="btn btn-success m-1" (click)="openMadalAddEmployeee()">Add Employees</button>
     </div>
-    
+
   </div>
 </div>
 
@@ -173,7 +174,8 @@
           <!-- employee_name -->
           <div class="mb-3">
             <label for="employee_name" class="form-label">Employee Name</label>
-            <input type="text" formControlName="employee_name" class="form-control" id="employee_name" placeholder="employee_name"
+            <input type="text" formControlName="employee_name" class="form-control" id="employee_name"
+              placeholder="employee_name"
               [ngClass]="{'is-invalid': registerForm.get('employee_name')?.touched && registerForm.get('employee_name')?.errors}">
             <div *ngIf="registerForm?.get('employee_name')?.touched && registerForm?.get('employee_name')?.errors"
               class="invalid-feedback">
@@ -185,7 +187,8 @@
           <!-- employee_age -->
           <div class="mb-3">
             <label for="employee_age" class="form-label">Employee Age</label>
-            <input type="text" formControlName="employee_age" class="form-control" id="employee_age" placeholder="employee_age"
+            <input type="text" formControlName="employee_age" class="form-control" id="employee_age"
+              placeholder="employee_age"
               [ngClass]="{'is-invalid': registerForm.get('employee_age')?.touched && registerForm.get('employee_age')?.errors}">
             <div *ngIf="registerForm?.get('employee_age')?.touched && registerForm?.get('employee_age')?.errors"
               class="invalid-feedback">
@@ -197,20 +200,22 @@
           <!-- employee_salary -->
           <div class="mb-3">
             <label for="employee_salary" class="form-label">employee_salary</label>
-            <input type="id" formControlName="employee_salary" class="form-control" id="id" placeholder="employee_salary"
+            <input type="id" formControlName="employee_salary" class="form-control" id="id"
+              placeholder="employee_salary"
               [ngClass]="{'is-invalid': registerForm.get('employee_salary')?.touched && registerForm.get('employee_salary')?.errors}">
             <div *ngIf="registerForm?.get('employee_salary')?.touched && registerForm?.get('employee_salary')?.errors"
               class="invalid-feedback">
               <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required</div>
-              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['employee_salary']">employee_salary must be a valid</div>
+              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['employee_salary']">employee_salary must be a
+                valid</div>
 
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary"
-          (click)="addPost(registerForm.value,registerForm.value.id)"  [disabled]="!registerForm.valid">Save</button>
+        <button type="submit" class="btn btn-primary" (click)="addPost(registerForm.value,registerForm.value.id)"
+          [disabled]="!registerForm.valid">Save</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -237,7 +242,8 @@
               <div class="mb-3">
                 <label for="id" class="form-label">Id</label>
                 <input type="id" formControlName="id" class="form-control" id="id" placeholder="id"
-                  [ngClass]="{'is-invalid': registerForm.get('id')?.touched && registerForm.get('id')?.errors}"readonly>
+                  [ngClass]="{'is-invalid': registerForm.get('id')?.touched && registerForm.get('id')?.errors}"
+                  readonly>
                 <div *ngIf="registerForm?.get('id')?.touched && registerForm?.get('id')?.errors"
                   class="invalid-feedback">
                   <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div>
@@ -253,13 +259,15 @@
                 <div *ngIf="registerForm?.get('employee_name')?.touched && registerForm?.get('employee_name')?.errors"
                   class="invalid-feedback">
                   <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">employee_name is required</div>
-                  <div *ngIf="registerForm?.get('employee_name')?.errors?.['employee_name']">employee_name must be a valid</div>
+                  <div *ngIf="registerForm?.get('employee_name')?.errors?.['employee_name']">employee_name must be a
+                    valid</div>
                 </div>
               </div>
               <!-- employee_age -->
               <div class="mb-3">
                 <label for="employee_age" class="form-label">Employee_Age</label>
-                <input type="text" formControlName="employee_age" class="form-control" id="employee_age" placeholder="employee_age"
+                <input type="text" formControlName="employee_age" class="form-control" id="employee_age"
+                  placeholder="employee_age"
                   [ngClass]="{'is-invalid': registerForm.get('employee_age')?.touched && registerForm.get('employee_age')?.errors}">
                 <div *ngIf="registerForm?.get('employee_age')?.touched && registerForm?.get('employee_age')?.errors"
                   class="invalid-feedback">
@@ -270,12 +278,16 @@
               <!-- employee_salary -->
               <div class="mb-3">
                 <label for="employee_salary" class="form-label">employee_salary</label>
-                <input type="text" formControlName="employee_salary" class="form-control" id="employee_salary" placeholder="employee_salary"
+                <input type="text" formControlName="employee_salary" class="form-control" id="employee_salary"
+                  placeholder="employee_salary"
                   [ngClass]="{'is-invalid': registerForm.get('employee_salary')?.touched && registerForm.get('employee_salary')?.errors}">
-                <div *ngIf="registerForm?.get('employee_salary')?.touched && registerForm?.get('employee_salary')?.errors"
+                <div
+                  *ngIf="registerForm?.get('employee_salary')?.touched && registerForm?.get('employee_salary')?.errors"
                   class="invalid-feedback">
-                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required</div>
-                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['employee_salary']">employee_salary must be a valid</div>
+                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required
+                  </div>
+                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['employee_salary']">employee_salary must be
+                    a valid</div>
                 </div>
               </div>
             </div>
@@ -300,75 +312,20 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header bg-info text-white">
-        <h5 class="modal-title p " id="exampleDeleteModal">About : {{Name}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
           (click)="closeModal()"></button>
       </div>
-      <div *ngFor="let item of data2">
-        <!--
-          for loop
-        -->
-        <ng-template [ngIf]="item.id == Id">
-          <div class="flex-container">
-            <!-- image -->
-            <div class="flex-child bg-img">
+      <div class="modal-body">
+        <p class="text-center">Are you sure you want to delete ?</p>
 
-              <div class="">
-                <div>
-                  <img class="pi" [src]="imagedata[Id].image">
-                </div>
-              </div>
-            </div>
-            <!-- details -->
-            <div class="flex-child bg-details ">
-              <div class="row align-items-start ">
-                <diV class="col-md-6 ">
-                  <label class="">Id : </label>
-                </diV>
-                <diV class="col-md-6">
-                  <label class="" style="text-align: left;">{{item.id}}</label>
-                </diV>
-              </div>
-
-              <diV class="row align-items-start ">
-                <div class="col-md-6">
-                  <label class="">Name : </label>
-                </div>
-                <div class="col-md-6">
-                  <label class="">{{item.employee_name}}</label>
-                </div>
-              </diV>
-
-              <diV class="row align-items-start ">
-                <div class="col-md-6">
-                  <label class="">Salary : </label>
-                </div>
-                <div class="col-md-6">
-                  <label class="">{{item.employee_salary}}</label>
-                </div>
-              </diV>
-
-              <diV class="row align-items-start ">
-                <div class="col-md-6">
-                  <label class="">Age : </label>
-                </div>
-                <div class="col-md-6">
-                  <label class="">{{item.employee_age}}</label>
-                </div>
-              </diV>
-            </div>
-
-          </div>
-        </ng-template>
-        <!--
-         if loop
-        -->
       </div>
-
-
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
-
+        <div class="m">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">No</button>
+      </div>
+        <button type="submit" class="btn btn-danger " (click)="deleteItem(deletedId)" data-bs-dismiss="modal"
+          (click)="closeModal()">
+          Yes</button>
       </div>
     </div>
   </div>

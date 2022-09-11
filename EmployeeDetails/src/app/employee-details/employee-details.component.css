@@ -103,3 +103,26 @@ body::before {
     transform: scale(1.10);
     /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+ /* .modal-content1 {
+    width: 70px;
+    width: 400px;
+    height: 153px;
+    background-color: cornsilk;
+ } */
+/* .text-align-N {
+    text-align: right;
+    margin-top: -50px;
+    margin-left: 10px;
+    background-color: green;
+    
+}
+.text-align-Y {
+    text-align: right;
+    margin-top: -100px;
+    margin-left: 330px;
+   
+} */
+.m {
+    background-color: green;
+    margin-right: 350px;
+}

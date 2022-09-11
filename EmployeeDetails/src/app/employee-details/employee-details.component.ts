@@ -44,6 +44,7 @@ export class EmployeeDetailsComponent implements OnInit {
   employee_name: any;
   editEmployeeDetails: any;
   deleteModal: any;
+  deletedId:any;
 
   constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) { }
 
@@ -131,7 +132,8 @@ export class EmployeeDetailsComponent implements OnInit {
     this.addEmployeeFormModal.show();
   }
   // open delete modal
-  openDeleteMadal() {
+  openDeleteMadal(id:any) {
+    this.deletedId = id;
     this.deleteModal.show()
   }
   // add employee function
@@ -197,5 +199,9 @@ export class EmployeeDetailsComponent implements OnInit {
     localStorage.setItem('ldata', JSON.stringify(this.data2));
     window.location.reload();
 
+  }
+
+  ckeckfunction() {
+    console.log("ckeckfunction");
   }
 }
