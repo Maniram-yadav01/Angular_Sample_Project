@@ -84,10 +84,10 @@ export class EmployeeDetailsComponent implements OnInit {
   private buildForm() {
     return this.formBuilder.group({
 
-      id: ['', [Validators.required]],
-      employee_name: ['', [Validators.required]],
-      employee_age: ['', [Validators.required]],
-      employee_salary: ['', [Validators.required]]
+      id: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      employee_name: ['', [Validators.required,Validators.pattern("^[a-zA-Z ]*$")]],
+      employee_age: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      employee_salary: ['', [Validators.required,Validators.pattern("^[0-9]*$")]]
 
     });
   }
@@ -172,10 +172,9 @@ export class EmployeeDetailsComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
 
           id: [id, [Validators.required]],
-          employee_name: [this.employee_name, [Validators.required]],
-          employee_age: [this.employee_age, [Validators.required, Validators.pattern("^[0-9]*$"),
-          Validators.minLength(1)]],
-          employee_salary: [this.employee_salary, [Validators.required]]
+          employee_name: [this.employee_name, [Validators.required,Validators.pattern("^[a-zA-Z ]*$")]],
+          employee_age: [this.employee_age, [Validators.required, Validators.pattern("^[0-9]*$")]],
+          employee_salary: [this.employee_salary, [Validators.required ,Validators.pattern("^[0-9]*$")]]
 
         });
       }
@@ -199,9 +198,5 @@ export class EmployeeDetailsComponent implements OnInit {
     localStorage.setItem('ldata', JSON.stringify(this.data2));
     window.location.reload();
 
-  }
-
-  ckeckfunction() {
-    console.log("ckeckfunction");
   }
 }

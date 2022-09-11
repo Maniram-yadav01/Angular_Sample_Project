@@ -167,7 +167,7 @@
               [ngClass]="{'is-invalid': registerForm.get('id')?.touched && registerForm.get('id')?.errors}">
             <div *ngIf="registerForm?.get('id')?.touched && registerForm?.get('id')?.errors" class="invalid-feedback">
               <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div>
-              <div *ngIf="registerForm?.get('id')?.errors?.['id']">Id must be a valid</div>
+              <div *ngIf="registerForm?.get('id')?.errors?.['pattern']">Id must be a number</div>
 
             </div>
           </div>
@@ -180,7 +180,7 @@
             <div *ngIf="registerForm?.get('employee_name')?.touched && registerForm?.get('employee_name')?.errors"
               class="invalid-feedback">
               <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">Employee Name is required</div>
-              <div *ngIf="registerForm?.get('employee_name')?.errors?.['id']">Employee Name must be a text</div>
+              <div *ngIf="registerForm?.get('employee_name')?.errors?.['pattern']">Employee Name must be a string</div>
 
             </div>
           </div>
@@ -193,7 +193,7 @@
             <div *ngIf="registerForm?.get('employee_age')?.touched && registerForm?.get('employee_age')?.errors"
               class="invalid-feedback">
               <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
-              <div *ngIf="registerForm?.get('employee_age')?.errors?.['id']">employee_age must be a text</div>
+              <div *ngIf="registerForm?.get('employee_age')?.errors?.['pattern']">Age must be a number</div>
 
             </div>
           </div>
@@ -206,8 +206,8 @@
             <div *ngIf="registerForm?.get('employee_salary')?.touched && registerForm?.get('employee_salary')?.errors"
               class="invalid-feedback">
               <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required</div>
-              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['employee_salary']">employee_salary must be a
-                valid</div>
+              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['pattern']">Salary must be a
+                number</div>
 
             </div>
           </div>
@@ -247,7 +247,7 @@
                 <div *ngIf="registerForm?.get('id')?.touched && registerForm?.get('id')?.errors"
                   class="invalid-feedback">
                   <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div>
-                  <div *ngIf="registerForm?.get('id')?.errors?.['id']">Id must be a valid</div>
+                  <div *ngIf="registerForm?.get('id')?.errors?.['id']">Id must be a number</div>
                 </div>
               </div>
               <!-- employee_name  -->
@@ -261,6 +261,7 @@
                   <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">employee_name is required</div>
                   <div *ngIf="registerForm?.get('employee_name')?.errors?.['employee_name']">employee_name must be a
                     valid</div>
+                    <div *ngIf="registerForm?.get('employee_name')?.errors?.['pattern']">Name must be a string</div>
                 </div>
               </div>
               <!-- employee_age -->
@@ -272,7 +273,9 @@
                 <div *ngIf="registerForm?.get('employee_age')?.touched && registerForm?.get('employee_age')?.errors"
                   class="invalid-feedback">
                   <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
-                  <div *ngIf="">employee_age must be a number</div>
+                  <div *ngIf="registerForm?.get('employee_age')?.errors?.['pattern']">Age must be a number</div>
+                  
+                  
                 </div>
               </div>
               <!-- employee_salary -->
@@ -284,10 +287,10 @@
                 <div
                   *ngIf="registerForm?.get('employee_salary')?.touched && registerForm?.get('employee_salary')?.errors"
                   class="invalid-feedback">
-                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required
+                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">Salary is required
                   </div>
-                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['employee_salary']">employee_salary must be
-                    a valid</div>
+                    <div *ngIf="registerForm?.get('employee_salary')?.errors?.['pattern']">Salary must be a number</div>
+                    
                 </div>
               </div>
             </div>
