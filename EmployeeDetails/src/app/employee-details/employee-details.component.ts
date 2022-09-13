@@ -44,7 +44,9 @@ export class EmployeeDetailsComponent implements OnInit {
   employee_name: any;
   editEmployeeDetails: any;
   deleteModal: any;
-  deletedId:any;
+  deletedId: any;
+  email: any;
+ 
 
   constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) { }
 
@@ -55,8 +57,17 @@ export class EmployeeDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // fetch employees data
-    var data1: any = localStorage.getItem('ldata');
-    this.data2 = JSON.parse(data1);
+    this.employee.getData().subscribe((res: any) => {
+      this.employeedata = res;
+
+      //store data in  local storage
+      localStorage.setItem('ldata', JSON.stringify(this.employeedata));
+      var data1: any = localStorage.getItem('ldata');
+
+      this.data2 = JSON.parse(data1);
+
+
+    });
     // get images
     this.employee.getImage().subscribe((res: any) => {
       this.imagedata = res.users;
@@ -84,10 +95,11 @@ export class EmployeeDetailsComponent implements OnInit {
   private buildForm() {
     return this.formBuilder.group({
 
-      id: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
-      employee_name: ['', [Validators.required,Validators.pattern("^[a-zA-Z ]*$")]],
-      employee_age: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
-      employee_salary: ['', [Validators.required,Validators.pattern("^[0-9]*$")]]
+      id: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      employee_name: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
+      employee_age: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      employee_salary: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      email: ['', [Validators.required,Validators.email]]
 
     });
   }
@@ -100,41 +112,49 @@ export class EmployeeDetailsComponent implements OnInit {
     this.formModal.hide();
   }
 
-  // get api data and store local storage 
-  getapi() {
-    this.employee.getData().subscribe((res: any) => {
-      this.employeedata = res.data;
-      //store data in  local storage
-      localStorage.setItem('ldata', JSON.stringify(this.employeedata));
-      var data1: any = localStorage.getItem('ldata');
-      this.data2 = JSON.parse(data1);
-
-    });
-  }
-
-  // delete array data  
-  deleteItem(Id: any) {
-    var index = 0;
-    for (var val of this.data2) {
-      if (val.id == Id) {
-        this.data2.splice(index, 1);
-        localStorage.setItem('ldata', JSON.stringify(this.data2));
-        break;
-      }
-      else
-        index = index + 1;
-
-    }
-  }
   // openMadalAddEmployeee
   openMadalAddEmployeee() {
 
     this.addEmployeeFormModal.show();
   }
   // open delete modal
-  openDeleteMadal(id:any) {
+  openDeleteMadal(id: any) {
     this.deletedId = id;
     this.deleteModal.show()
+  }
+
+
+  //edit employees details
+  openEditMadal(id: any) {
+
+    this.Id = id;
+
+    for (var val of this.data2) {
+      if (val.id == this.Id) {
+
+        this.id = val.id;
+        this.employee_name = val.employee_name;
+        this.employee_age = val.employee_age;
+        this.employee_salary = val.employee_salary;
+         this.email = val.email;
+
+        this.registerForm = this.formBuilder.group({
+
+          id: [id, [Validators.required]],
+          employee_name: [this.employee_name, [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
+          employee_age: [this.employee_age, [Validators.required, Validators.pattern("^[0-9]*$")]],
+          employee_salary: [this.employee_salary, [Validators.required, Validators.pattern("^[0-9]*$")]],
+          email: [this.email, [Validators.required, Validators.email]]
+
+        });
+      }
+      this.editEmployeeDetails.show();
+
+    }
+  }
+  // for validation
+  get f() {
+    return this.registerForm.controls;
   }
   // add employee function
   addPost(addEmpData: any, id: number): void {
@@ -155,48 +175,33 @@ export class EmployeeDetailsComponent implements OnInit {
       window.location.reload(); // for reload 
     }
   }
-
-  //edit employees details
-  openEditMadal(id: any) {
-
-    this.Id = id;
-
-    for (var val of this.data2) {
-      if (val.id == this.Id) {
-
-        this.id = val.id;
-        this.employee_name = val.employee_name;
-        this.employee_age = val.employee_age;
-        this.employee_salary = val.employee_salary;
-
-        this.registerForm = this.formBuilder.group({
-
-          id: [id, [Validators.required]],
-          employee_name: [this.employee_name, [Validators.required,Validators.pattern("^[a-zA-Z ]*$")]],
-          employee_age: [this.employee_age, [Validators.required, Validators.pattern("^[0-9]*$")]],
-          employee_salary: [this.employee_salary, [Validators.required ,Validators.pattern("^[0-9]*$")]]
-
-        });
-      }
-      this.editEmployeeDetails.show();
-
-    }
-  }
-  // for validation
-  get f() {
-    return this.registerForm.controls;
-  }
   // update edit values
-  updateValues(data: IData, id: any) {
-    for (let i = 0; i < this.data2.length; i++) {
-      if (this.data2[i].id == id) {
-        this.data2[i] = data;
-        console.log(this.data2);
-        break;
-      }
-    }
-    localStorage.setItem('ldata', JSON.stringify(this.data2));
+  updateData(id: any, updateValue: any) {
+    this.employee.updateData(id, updateValue)
+    window.location.reload();
+  }
+  // delete record
+  deleteRecord(id: any) {
+    this.employee.deleteRecord(id);
     window.location.reload();
 
+  }
+  //  insert record
+  insertRecord(id: any, data: any) {
+    for (let empData of this.data2) {
+      if (empData.id == id) {
+        alert("alraedy employee exist")
+        window.location.reload(); // for reload 
+        this.found = false;
+        break
+      }
+
+    }
+    if (this.found) {
+      this.employee.insertRecord(data);
+      
+      alert("added");
+      window.location.reload(); // for reload 
+    }
   }
 }

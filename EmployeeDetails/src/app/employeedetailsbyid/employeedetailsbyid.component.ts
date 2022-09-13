@@ -23,14 +23,14 @@ export class EmployeedetailsbyidComponent implements OnInit {
       console.log(this.empId+"Id");
       
     });
-    this.employee.getData().subscribe((res:any)=>{
+    // this.employee.getData().subscribe((res:any)=>{
       
-      this.employeedata = res["data"];
-      console.log(this.employeedata);
+    //   this.employeedata = res["data"];
+    //   console.log(this.employeedata);
      
     
       
-    });
+    // });
   }
 
   back(){

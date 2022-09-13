@@ -23,6 +23,10 @@
             <!-- sorting icon using bootstrap -->
             <i class="bi bi-arrow-down-up"></i>
           </th>
+          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="email">Email
+            <!-- sorting icon using bootstrap -->
+            <i class="bi bi-arrow-down-up"></i>
+          </th>
           <th class="text-center" scope="col">Get Details</th>
           <th class="text-center width-m" scope="col">Modify</th>
 
@@ -35,6 +39,7 @@
           <td class="zoom">{{item.employee_name}}</td>
           <td class="text-center zoom">{{item.employee_age}}</td>
           <td class="text-center zoom">{{item.employee_salary}}</td>
+          <td class="text-center zoom">{{item.email}}</td>
           <td class="text-center ">
             <a (click)="openMadal(item.id,item.employee_name)">
               <i class="fa-solid fa-circle-info text-left">
@@ -60,7 +65,7 @@
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
     <div class="text-align">
-      <button type="button " class="btn btn-primary" (click)="getapi()">Reset</button>
+      <!-- <button type="button " class="btn btn-primary" (click)="getapi()">Reset</button> -->
       <button type="button " class="btn btn-success m-1" (click)="openMadalAddEmployeee()">Add Employees</button>
     </div>
 
@@ -211,10 +216,24 @@
 
             </div>
           </div>
+          <!-- email -->
+          <div class="mb-3">
+            <label for="employee_salary" class="form-label">Email</label>
+            <input type="id" formControlName="email" class="form-control" id="id"
+              placeholder="email"
+              [ngClass]="{'is-invalid': registerForm.get('email')?.dirty && registerForm.get('email')?.errors}">
+            <div *ngIf="registerForm?.get('email')?.dirty && registerForm?.get('email')?.errors"
+              class="invalid-feedback">
+              <div *ngIf="registerForm?.get('email')?.errors?.['required']">email is required</div>
+              <div *ngIf="registerForm?.get('email')?.errors?.['email']">email must be valid
+                </div>
+
+            </div>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" (click)="addPost(registerForm.value,registerForm.value.id)"
+        <button type="submit" class="btn btn-primary" (click)="insertRecord(registerForm.value.id,registerForm.value)"
           [disabled]="!registerForm.valid">Save</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
@@ -293,6 +312,21 @@
                     
                 </div>
               </div>
+              <!-- email -->
+              <div class="mb-3">
+                <label for="employee_salary" class="form-label">Email</label>
+                <input type="text" formControlName="email" class="form-control" id="email"
+                  placeholder="email"
+                  [ngClass]="{'is-invalid': registerForm.get('email')?.dirty && registerForm.get('email')?.errors}">
+                <div
+                  *ngIf="registerForm?.get('email')?.dirty && registerForm?.get('email')?.errors"
+                  class="invalid-feedback">
+                  <div *ngIf="registerForm?.get('email')?.errors?.['required']">email is required
+                  </div>
+                    <div *ngIf="registerForm?.get('email')?.errors?.['email']">email must be valid</div>
+                    
+                </div>
+              </div>
             </div>
           </div>
 
@@ -301,7 +335,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" (click)="updateValues(registerForm.value,registerForm.value.id)"
+        <button type="submit" class="btn btn-primary" (click)="updateData(registerForm.value.id,registerForm.value)"
           data-bs-dismiss="modal" [disabled]="!registerForm.valid">Save</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
       </div>
@@ -326,7 +360,7 @@
         <div class="m">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="closeModal()">No</button>
       </div>
-        <button type="submit" class="btn btn-danger " (click)="deleteItem(deletedId)" data-bs-dismiss="modal"
+        <button type="submit" class="btn btn-danger " (click)="deleteRecord(deletedId)" data-bs-dismiss="modal"
           (click)="closeModal()">
           Yes</button>
       </div>
