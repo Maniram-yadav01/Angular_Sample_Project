@@ -423,12 +423,45 @@ deleteItem(Id: any) {
   }
   ======================================================================================================
   modification :       09/09/2022 
-    1) apply validation for number
-    2) use edit and delete icon
+    1) apply validation for number   -- done
+    2) use edit and delete icon   --done
     3) use up and down arrow for sorting  -- done 
-    4) add a modal for delete button
+    4) add a modal for delete button   - done
 
     https://jasonwatmore.com/post/2020/07/07/angular-10-reactive-forms-validation-example
     https://www.freecodecamp.org/news/how-to-validate-angular-reactive-forms/
     https://www.itsolutionstuff.com/post/allow-only-numbers-in-textbox-using-angularexample.html
 
+in ts file
+  private buildForm() {
+    return this.formBuilder.group({
+
+      id: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      employee_name: ['', [Validators.required,Validators.pattern("^[a-zA-Z ]*$")]],
+      employee_age: ['', [Validators.required,Validators.pattern("^[0-9]*$")]],
+      employee_salary: ['', [Validators.required,Validators.pattern("^[0-9]*$")]]
+
+    });
+  }
+in html 
+ <div class="mb-3">
+                <label for="employee_age" class="form-label">Employee_Age</label>
+                <input type="text" formControlName="employee_age" class="form-control" id="employee_age"
+                  placeholder="employee_age"
+                  [ngClass]="{'is-invalid': registerForm.get('employee_age')?.touched && registerForm.get('employee_age')?.errors}">
+                <div *ngIf="registerForm?.get('employee_age')?.touched && registerForm?.get('employee_age')?.errors"
+                  class="invalid-feedback">
+                  <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
+                  <div *ngIf="registerForm?.get('employee_age')?.errors?.['pattern']">employee_age must be a number</div>
+                  
+                </div>
+              </div>
+
+
+============================================================================================================
+  modification : 13/09/2022
+1)Add a new email id field
+2) add validation error message when take input field   --- done 
+3) we can use json server 
+
+=================================================================================================================
