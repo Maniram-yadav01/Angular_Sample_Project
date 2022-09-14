@@ -28,18 +28,15 @@ export class EmployeeService {
 
     let url = "http://localhost:3000/data/";
  
-    return this.http.put(url + id,updatevalues).subscribe(data => {
-      console.log(data);
-    });
+    return this.http.put(url + id,updatevalues);
+  
     
   }
 
   // delete api
   deleteRecord(id:any) {
     let url = "http://localhost:3000/data/";
-    return this.http.delete(url+id).subscribe(data => {
-      console.log(data);
-    });
+    return this.http.delete(url+id);
 
   }
 

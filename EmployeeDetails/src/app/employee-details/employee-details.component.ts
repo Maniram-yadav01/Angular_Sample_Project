@@ -171,13 +171,18 @@ export class EmployeeDetailsComponent implements OnInit {
   }
   // update edit values
   updateData(id: any, updateValue: any) {
-    this.employee.updateData(id, updateValue)
+    this.employee.updateData(id, updateValue).subscribe(data => {
+      console.log(data);
+    });
     window.location.reload();
   }
   // delete record
   deleteRecord(id: any) {
-    this.employee.deleteRecord(id);
+    this.employee.deleteRecord(id).subscribe(data => {
+      console.log("deleted service"+data);
+    });
     window.location.reload();
+    console.log("employee");
 
   }
   //  insert record

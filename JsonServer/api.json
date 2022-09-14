@@ -1,14 +1,6 @@
 {
   "data": [
     {
-      "id": 1,
-      "employee_name": "Tiger Nixon",
-      "employee_salary": 320800,
-      "employee_age": 61,
-      "profile_image": "",
-      "email": "abc@gmail.com"
-    },
-    {
       "id": 2,
       "employee_name": "Garrett Winters",
       "employee_salary": 170750,
@@ -45,14 +37,6 @@
       "employee_name": "Brielle Williamson",
       "employee_salary": 372000,
       "employee_age": 61,
-      "profile_image": "",
-      "email": "abc@gmail.com"
-    },
-    {
-      "id": 7,
-      "employee_name": "Herrod Chandler",
-      "employee_salary": 137500,
-      "employee_age": 59,
       "profile_image": "",
       "email": "abc@gmail.com"
     },
@@ -170,6 +154,13 @@
       "employee_age": 21,
       "employee_salary": 106450,
       "email": "Caesar@gmail.com"
+    },
+    {
+      "id": 24,
+      "employee_name": "Doris Wilder",
+      "employee_age": 23,
+      "employee_salary": 85600,
+      "email": "raj@gmail.com"
     }
   ]
 }
