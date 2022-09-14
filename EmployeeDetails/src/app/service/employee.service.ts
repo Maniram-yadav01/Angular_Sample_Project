@@ -28,7 +28,9 @@ export class EmployeeService {
 
     let url = "http://localhost:3000/data/";
  
-    return this.http.put(url + id,updatevalues);
+    return this.http.put(url + id,updatevalues).subscribe(data => {
+      console.log(data);
+    });
     
   }
 

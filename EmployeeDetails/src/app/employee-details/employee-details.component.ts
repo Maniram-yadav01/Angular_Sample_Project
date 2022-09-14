@@ -58,16 +58,10 @@ export class EmployeeDetailsComponent implements OnInit {
   ngOnInit(): void {
     // fetch employees data
     this.employee.getData().subscribe((res: any) => {
-      this.employeedata = res;
-
-      //store data in  local storage
-      localStorage.setItem('ldata', JSON.stringify(this.employeedata));
-      var data1: any = localStorage.getItem('ldata');
-
-      this.data2 = JSON.parse(data1);
-
-
+      this.data2 = res;
     });
+    
+
     // get images
     this.employee.getImage().subscribe((res: any) => {
       this.imagedata = res.users;

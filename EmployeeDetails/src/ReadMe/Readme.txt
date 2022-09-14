@@ -460,11 +460,37 @@ in html
 
 ============================================================================================================
   modification : 13/09/2022
-1)Add a new email id field
+1)Add a new email id field    -- done
 2) add validation error message when take input field   --- done 
-3) we can use json server 
+3) we can use json server   -- done 
 
 // api chnaged
     // let url = "https://dummy.restapiexample.com/api/v1/employees";
     let url = "http://localhost:3000/data";
+==========================================
+//validation error message when take input field
+
+2)ts file
+
+employee_salary: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+
+html
+<!-- employee_salary -->
+              <div class="mb-3">
+                <label for="employee_salary" class="form-label">employee_salary</label>
+                <input type="text" formControlName="employee_salary" class="form-control" id="employee_salary"
+                  placeholder="employee_salary"
+                  [ngClass]="{'is-invalid': registerForm.get('employee_salary')?.dirty && registerForm.get('employee_salary')?.errors}">
+                <div
+                  *ngIf="registerForm?.get('employee_salary')?.dirty && registerForm?.get('employee_salary')?.errors"
+                  class="invalid-feedback">
+                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">Salary is required
+                  </div>
+                    <div *ngIf="registerForm?.get('employee_salary')?.errors?.['pattern']">Salary must be a number</div>
+                    
+                </div>
+              </div>
+==================
+3)we can use json server
+json-server --watch api.json
 =================================================================================================================
