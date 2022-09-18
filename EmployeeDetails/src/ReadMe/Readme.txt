@@ -462,7 +462,7 @@ in html
   modification : 13/09/2022
 1)Add a new email id field    -- done
 2) add validation error message when take input field   --- done 
-3) we can use json server   -- done 
+3) use json server   -- done 
 
 // api chnaged
     // let url = "https://dummy.restapiexample.com/api/v1/employees";
@@ -494,3 +494,10 @@ html
 3)we can use json server
 json-server --watch api.json
 =================================================================================================================
+
+
+==============================================================================================================================================
+version 1.0.0
+1) Text box for searching base on name 
+2)validation
+     number field me string ko enter karne pr string enter no ho (use jquery and asscci code)

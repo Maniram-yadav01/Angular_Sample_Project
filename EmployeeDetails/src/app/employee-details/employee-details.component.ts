@@ -59,7 +59,9 @@ export class EmployeeDetailsComponent implements OnInit {
     // fetch employees data
     this.employee.getData().subscribe((res: any) => {
       this.data2 = res;
+      console.log("get"+this.data2[0].id);
     });
+    console.log("after"+this.data2);
     
 
     // get images
