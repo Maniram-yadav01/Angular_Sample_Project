@@ -46,7 +46,7 @@ export class EmployeeDetailsComponent implements OnInit {
   deleteModal: any;
   deletedId: any;
   email: any;
- 
+  filterText : string = ''; // for filter
 
   constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) { }
 

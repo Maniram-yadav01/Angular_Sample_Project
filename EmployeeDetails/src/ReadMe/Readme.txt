@@ -501,3 +501,47 @@ version 1.0.0
 1) Text box for searching base on name 
 2)validation
      number field me string ko enter karne pr string enter no ho (use jquery and asscci code)
+
+                                  => date 22/09/2022    
+==============================================================================================================================================
+How to use pipe for filter
+command for pipe:
+      ng g p FilterText
+
+1)filter-text.pipe.ts
+
+      import { Pipe, PipeTransform } from '@angular/core';
+      import { IData } from '../modals/IEmployees';
+
+      @Pipe({
+        name: 'filterText'
+      })
+      export class FilterTextPipe implements PipeTransform {
+
+        transform(emp: IData[], filterText : string): IData[] {
+          return filterText ? emp.filter(game => game.employee_name.toLowerCase().indexOf(filterText) > -1) : emp;
+        }
+        
+
+      }
+
+2)in ts file 
+      filterText : string = ''; // for filter declare variable
+      
+3) html file
+      <!-- Filter input -->
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Filter</label>
+      <input type="email" class="form-control" [(ngModel)]="filterText" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+4) same html file
+   <tr class="" *ngFor="let item of data2 | filterText : filterText ; let i = index ">
+
+          <td class="text-center zoom">{{item.id}}</td>
+          <td class="zoom">{{item.employee_name}}</td>
+          <td class="text-center zoom">{{item.employee_age}}</td>
+          <td class="text-center zoom">{{item.employee_salary}}</td>
+          <td class="text-center zoom">{{item.email}}</td>
+          
+        </tr>
+==============================================================================================================================================

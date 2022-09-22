@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { EmployeedetailsbyidComponent } from './employeedetailsbyid/employeedetailsbyid.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { sortDirective } from './employee-details/sort.directive';
+import { FilterTextPipe } from './pipe/filter-text.pipe';
 
 const routes: Routes = [
   { path:'registration', component: EmployeeDetailsComponent },  // you must add your component here
@@ -21,7 +22,8 @@ const routes: Routes = [
     AppComponent,
     EmployeeDetailsComponent,
     EmployeedetailsbyidComponent,
-    sortDirective
+    sortDirective,
+    FilterTextPipe
     
     
   ],

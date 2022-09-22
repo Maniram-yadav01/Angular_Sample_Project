@@ -1,6 +1,25 @@
 .container {
     background-color: #9f7b8517;
 }
+
+.flex-box {
+    display:  flex;
+}
+
+/* filtercss */
+.box1 {
+    width: 190px;
+    margin-left: 152px;
+    background-color: red;
+}
+.box2 {
+    width: 190px;
+    margin-left: 152px;
+    background-color: green;
+}
+
+
+
 .table {
 
     border-radius: 5px;
@@ -12,10 +31,12 @@
     float: none;
 
 }
+
 .text-align {
     text-align: right;
     margin-right: 179px;
 }
+
 .m-2 {
     margin-right: 3px;
 }
@@ -36,7 +57,7 @@ body::before {
 
 .pl {
     padding-left: 2px;
-    
+
 }
 
 .pd {
@@ -59,29 +80,31 @@ body::before {
     text-align: center;
     margin-bottom: 2px;
     margin-left: -38px;
-  
+
 }
 
 .flex-container {
     display: flex;
     margin: 3px;
     padding: 1px;
-   
+
 
 }
 
 .flex-child {
     flex: 1;
-   
+
     text-align: center;
 }
 
 .flex-child:first-child {
     margin-right: 0px;
 }
+
 .bg-img {
     background-color: lightgray;
 }
+
 .bg-details {
     background-color: blueviolet;
 }
@@ -91,7 +114,7 @@ body::before {
 }
 
 .zoom {
-    
+
     transition: transform .2s;
     /* Animation */
     /* width: 2px;
@@ -103,25 +126,7 @@ body::before {
     transform: scale(1.10);
     /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
- /* .modal-content1 {
-    width: 70px;
-    width: 400px;
-    height: 153px;
-    background-color: cornsilk;
- } */
-/* .text-align-N {
-    text-align: right;
-    margin-top: -50px;
-    margin-left: 10px;
-    background-color: green;
-    
-}
-.text-align-Y {
-    text-align: right;
-    margin-top: -100px;
-    margin-left: 330px;
-   
-} */
+
 .m {
     background-color: green;
     margin-right: 350px;
