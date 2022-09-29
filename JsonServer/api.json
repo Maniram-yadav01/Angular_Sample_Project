@@ -9,33 +9,17 @@
       "email": "abc@gmail.com"
     },
     {
-      "id": 6,
-      "employee_name": "Brielle Williamson",
-      "employee_salary": 372000,
-      "employee_age": 61,
-      "profile_image": "",
-      "email": "abc@gmail.com"
-    },
-    {
-      "id": 9,
-      "employee_name": "fsf",
-      "employee_age": 39,
-      "employee_salary": 205500,
-      "email": "abc@gmail.com"
-    },
-    {
       "id": 10,
-      "employee_name": "Sonya Frost",
-      "employee_salary": 103600,
-      "employee_age": 23,
-      "profile_image": "",
+      "employee_name": "Sonya",
+      "employee_age": "23",
+      "employee_salary": "1036004",
       "email": "abc@gmail.com"
     },
     {
       "id": 13,
-      "employee_name": "Char",
-      "employee_age": 36,
-      "employee_salary": 470600,
+      "employee_name": "Charj",
+      "employee_age": "36",
+      "employee_salary": "470",
       "email": "mani@gmail.com"
     },
     {
@@ -44,90 +28,7 @@
       "employee_salary": 313500,
       "employee_age": 43,
       "profile_image": ""
-    },
-    {
-      "id": 15,
-      "employee_name": "Tatyana Fitzpatrick",
-      "employee_salary": 385750,
-      "employee_age": 19,
-      "profile_image": ""
-    },
-    {
-      "id": 16,
-      "employee_name": "Michael Silva",
-      "employee_salary": 198500,
-      "employee_age": 66,
-      "profile_image": ""
-    },
-    {
-      "id": 17,
-      "employee_name": "Paul Byrd",
-      "employee_salary": 725000,
-      "employee_age": 64,
-      "profile_image": ""
-    },
-    {
-      "id": 18,
-      "employee_name": "Gloria Little",
-      "employee_age": 59,
-      "employee_salary": 237500,
-      "email": "Gloria.Little@gmail.com"
-    },
-    {
-      "id": 19,
-      "employee_name": "Bradley Greer",
-      "employee_salary": 132000,
-      "employee_age": 41,
-      "profile_image": ""
-    },
-    {
-      "id": 20,
-      "employee_name": "abc",
-      "employee_age": 35,
-      "employee_salary": 217500,
-      "email": "abcd@gmail.com"
-    },
-    {
-      "id": 21,
-      "employee_name": "Jenette Caldwell",
-      "employee_age": 30,
-      "employee_salary": 345000,
-      "email": "Jenette.Caldwell@gmail.com"
-    },
-    {
-      "id": 22,
-      "employee_name": "Yuri Berry",
-      "employee_age": 40,
-      "employee_salary": 675000,
-      "email": "Yuri.Berry@gmail.com"
-    },
-    {
-      "id": 23,
-      "employee_name": "Caesar Vance",
-      "employee_age": 21,
-      "employee_salary": 106450,
-      "email": "Caesar@gmail.com"
-    },
-    {
-      "id": "24",
-      "employee_name": "tushar",
-      "employee_age": "23",
-      "employee_salary": "53543636",
-      "email": "tushar@gmail.com"
-    },
-    {
-      "id": "101",
-      "employee_name": "fbdfbdf",
-      "employee_age": "4646",
-      "employee_salary": "465464",
-      "email": "abc@gmail.com"
-    },
-    {
-      "id": "123213",
-      "employee_name": "csacasc",
-      "employee_age": "5332353",
-      "employee_salary": "32535",
-      "email": "abc@gmail.com"
     }
+    
   ]
 }

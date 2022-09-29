@@ -179,56 +179,62 @@
           <!-- id -->
           <div class="mb-3">
             <label for="id" class="form-label">Id</label>
-            <input type="id" formControlName="id" class="form-control" id="id" placeholder="id"
+            <!-- jquery validation -->
+            <input type="id" formControlName="id" class="form-control allow-numeric-id" id="id" placeholder="id"
               [ngClass]="{'is-invalid': (registerForm.get('id')?.dirty ||  registerForm.get('id')?.touched) && registerForm.get('id')?.errors}">
+            <span class="error-id" style="color: red; display: none">* only number (0 - 9)</span>
             <div
               *ngIf="(registerForm?.get('id')?.dirty ||  registerForm.get('id')?.touched) && registerForm?.get('id')?.errors"
               class="invalid-feedback">
-              <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div>
-              <div *ngIf="registerForm?.get('id')?.errors?.['pattern']">Id must be a number</div>
+              <!-- <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div> -->
+              <!-- <div *ngIf="registerForm?.get('id')?.errors?.['pattern']">Id must be a number</div> -->
+              <!-- <span class="error" style="color: red; display: none">* Input digits (0 - 9)</span> -->
 
             </div>
           </div>
           <!-- employee_name -->
           <div class="mb-3">
             <label for="employee_name" class="form-label">Employee Name</label>
-            <input type="text" formControlName="employee_name" class="form-control" id="employee_name"
-              placeholder="employee_name"
+            <input type="text" formControlName="employee_name" class="form-control allow-alphabet-name"
+              id="employee_name" placeholder="employee_name"
               [ngClass]="{'is-invalid': (registerForm.get('employee_name')?.dirty ||  registerForm.get('employee_name')?.touched) && registerForm.get('employee_name')?.errors}">
+            <span class="error-name" style="color: red; display: none">* only alphabet (a - z)</span>
             <div
               *ngIf="(registerForm?.get('employee_name')?.dirty || registerForm.get('employee_name')?.touched) && registerForm?.get('employee_name')?.errors"
               class="invalid-feedback">
-              <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">Employee Name is required</div>
-              <div *ngIf="registerForm?.get('employee_name')?.errors?.['pattern']">Employee Name must be a string</div>
+              <!-- <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">Employee Name is required</div>
+              <div *ngIf="registerForm?.get('employee_name')?.errors?.['pattern']">Employee Name must be a string</div> -->
 
             </div>
           </div>
           <!-- employee_age -->
           <div class="mb-3">
             <label for="employee_age" class="form-label">Employee Age</label>
-            <input type="text" formControlName="employee_age" class="form-control" id="employee_age"
+            <input type="text" formControlName="employee_age" class="form-control allow-numeric-age" id="employee_age"
               placeholder="employee_age"
               [ngClass]="{'is-invalid': (registerForm?.get('employee_age')?.dirty || registerForm.get('employee_age')?.touched) && registerForm.get('employee_age')?.errors}">
+            <span class="error-age" style="color: red; display: none">* only number</span>
             <div
               *ngIf="(registerForm?.get('employee_age')?.dirty || registerForm.get('employee_age')?.touched) && registerForm?.get('employee_age')?.errors"
               class="invalid-feedback">
-              <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
-              <div *ngIf="registerForm?.get('employee_age')?.errors?.['pattern']">Age must be a number</div>
+              <!-- <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
+              <div *ngIf="registerForm?.get('employee_age')?.errors?.['pattern']">Age must be a number</div> -->
 
             </div>
           </div>
           <!-- employee_salary -->
           <div class="mb-3">
             <label for="employee_salary" class="form-label">employee_salary</label>
-            <input type="id" formControlName="employee_salary" class="form-control" id="id"
+            <input type="id" formControlName="employee_salary" class="form-control allow-numeric-salary" id="id"
               placeholder="employee_salary"
               [ngClass]="{'is-invalid': (registerForm?.get('employee_salary')?.dirty || registerForm.get('employee_salary')?.touched) && registerForm.get('employee_salary')?.errors}">
+            <span class="error-salary" style="color: red; display: none" id="salary">* only number</span>
             <div
               *ngIf="(registerForm?.get('employee_salary')?.dirty || registerForm.get('employee_salary')?.touched) && registerForm?.get('employee_salary')?.errors"
               class="invalid-feedback">
-              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required</div>
+              <!-- <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">employee_salary is required</div>
               <div *ngIf="registerForm?.get('employee_salary')?.errors?.['pattern']">Salary must be a
-                number</div>
+                number</div> -->
 
             </div>
           </div>
@@ -271,77 +277,77 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="registerForm">
-          <div *ngFor="let item of data2">
-            <div *ngIf="item.id == Id">
-              <!-- Id -->
-              <div class="mb-3">
-                <label for="id" class="form-label">Id</label>
-                <input type="id" formControlName="id" class="form-control" id="id" placeholder="id"
-                  [ngClass]="{'is-invalid': registerForm.get('id')?.touched && registerForm.get('id')?.errors}"
-                  readonly>
-                <div *ngIf="registerForm?.get('id')?.touched && registerForm?.get('id')?.errors"
-                  class="invalid-feedback">
-                  <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div>
-                  <div *ngIf="registerForm?.get('id')?.errors?.['id']">Id must be a number</div>
-                </div>
-              </div>
-              <!-- employee_name  -->
-              <div class="mb-3">
-                <label for="employee_name" class="form-label">Employee_Name</label>
-                <input type="employee_name" formControlName="employee_name" class="form-control" id="employee_name"
-                  placeholder="employee_name"
-                  [ngClass]="{'is-invalid': registerForm.get('employee_name')?.dirty && registerForm.get('employee_name')?.errors}">
-                <div *ngIf="registerForm?.get('employee_name')?.dirty && registerForm?.get('employee_name')?.errors"
-                  class="invalid-feedback">
-                  <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">employee_name is required</div>
-                  <div *ngIf="registerForm?.get('employee_name')?.errors?.['employee_name']">employee_name must be a
-                    valid</div>
-                  <div *ngIf="registerForm?.get('employee_name')?.errors?.['pattern']">Name must be a string</div>
-                </div>
-              </div>
-              <!-- employee_age -->
-              <div class="mb-3">
-                <label for="employee_age" class="form-label">Employee_Age</label>
-                <input type="text" formControlName="employee_age" class="form-control" id="employee_age"
-                  placeholder="employee_age"
-                  [ngClass]="{'is-invalid': registerForm.get('employee_age')?.dirty && registerForm.get('employee_age')?.errors}">
-                <div *ngIf="registerForm?.get('employee_age')?.dirty && registerForm?.get('employee_age')?.errors"
-                  class="invalid-feedback">
-                  <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
-                  <div *ngIf="registerForm?.get('employee_age')?.errors?.['pattern']">Age must be a number</div>
-
-
-                </div>
-              </div>
-              <!-- employee_salary -->
-              <div class="mb-3">
-                <label for="employee_salary" class="form-label">employee_salary</label>
-                <input type="text" formControlName="employee_salary" class="form-control" id="employee_salary"
-                  placeholder="employee_salary"
-                  [ngClass]="{'is-invalid': registerForm.get('employee_salary')?.dirty && registerForm.get('employee_salary')?.errors}">
-                <div *ngIf="registerForm?.get('employee_salary')?.dirty && registerForm?.get('employee_salary')?.errors"
-                  class="invalid-feedback">
-                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">Salary is required
-                  </div>
-                  <div *ngIf="registerForm?.get('employee_salary')?.errors?.['pattern']">Salary must be a number</div>
-
-                </div>
-              </div>
-              <!-- email -->
-              <div class="mb-3">
-                <label for="employee_salary" class="form-label">Email</label>
-                <input type="text" formControlName="email" class="form-control" id="email" placeholder="email"
-                  [ngClass]="{'is-invalid': registerForm.get('email')?.dirty && registerForm.get('email')?.errors}">
-                <div *ngIf="registerForm?.get('email')?.dirty && registerForm?.get('email')?.errors"
-                  class="invalid-feedback">
-                  <div *ngIf="registerForm?.get('email')?.errors?.['required']">email is required
-                  </div>
-                  <div *ngIf="registerForm?.get('email')?.errors?.['email']">email must be valid</div>
-
-                </div>
-              </div>
+          <!-- Id -->
+          <div class="mb-3">
+            <label for="id" class="form-label">Id</label>
+            <input type="id" formControlName="id" class="form-control" id="id" placeholder="id"
+              [ngClass]="{'is-invalid': registerForm.get('id')?.touched && registerForm.get('id')?.errors}" readonly>
+            <div *ngIf="registerForm?.get('id')?.touched && registerForm?.get('id')?.errors" class="invalid-feedback">
+              <div *ngIf="registerForm?.get('id')?.errors?.['required']">Id is required</div>
+              <div *ngIf="registerForm?.get('id')?.errors?.['id']">Id must be a number</div>
             </div>
           </div>
+          <!-- employee_name  -->
+          <div class="mb-3">
+            <label for="employee_name" class="form-label">Name</label>
+            <input class="form-control allow-alphabet-name" type="employee_name" formControlName="employee_name"
+              id="employee_name" placeholder="employee_name"
+              [ngClass]="{'is-invalid': registerForm.get('employee_name')?.dirty && registerForm.get('employee_name')?.errors}">
+            <span class="error-name" style="color: red; display: none">* only alphbet (a - z)</span>
+
+            <div *ngIf="registerForm?.get('employee_name')?.dirty && registerForm?.get('employee_name')?.errors"
+              class="invalid-feedback">
+              <!-- <div *ngIf="registerForm?.get('employee_name')?.errors?.['required']">employee_name is required</div>
+              <div *ngIf="registerForm?.get('employee_name')?.errors?.['employee_name']">employee_name must be a
+                valid</div>
+              <div *ngIf="registerForm?.get('employee_name')?.errors?.['pattern']">Name must be a string</div> -->
+            </div>
+          </div>
+          <!-- employee_age -->
+          <div class="mb-3">
+            <label for="employee_age" class="form-label">Age</label>
+            <input type="text" formControlName="employee_age" class="form-control allow-numeric-age" id="employee_age"
+              placeholder="employee_age"
+              [ngClass]="{'is-invalid': registerForm.get('employee_age')?.dirty && registerForm.get('employee_age')?.errors}">
+              <span class="error-age" style="color: red; display: none" id="salary">* only number</span>
+            <div *ngIf="registerForm?.get('employee_age')?.dirty && registerForm?.get('employee_age')?.errors"
+              class="invalid-feedback">
+              <!-- <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
+              <div *ngIf="registerForm?.get('employee_age')?.errors?.['pattern']">Age must be a number</div>
+ -->
+
+            </div>
+          </div>
+          <!-- employee_salary -->
+          <div class="mb-3">
+            <label for="employee_salary" class="form-label">Salary</label>
+            <input type="text" formControlName="employee_salary" class="form-control allow-numeric-salary"
+              id="employee_salary" placeholder="employee_salary"
+              [ngClass]="{'is-invalid': registerForm.get('employee_salary')?.dirty && registerForm.get('employee_salary')?.errors}">
+              <span class="error-salary" style="color: red; display: none" id="salary">* only number</span>
+            <div *ngIf="registerForm?.get('employee_salary')?.dirty && registerForm?.get('employee_salary')?.errors"
+              class="invalid-feedback">
+              <!-- <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">Salary is required
+              </div>
+              <div *ngIf="registerForm?.get('employee_salary')?.errors?.['pattern']">Salary must be a number</div> -->
+
+            </div>
+          </div>
+          <!-- email -->
+          <div class="mb-3">
+            <label for="employee_salary" class="form-label">Email</label>
+            <input type="text" formControlName="email" class="form-control" id="email" placeholder="email"
+              [ngClass]="{'is-invalid': registerForm.get('email')?.dirty && registerForm.get('email')?.errors}">
+            <div *ngIf="registerForm?.get('email')?.dirty && registerForm?.get('email')?.errors"
+              class="invalid-feedback">
+              <div *ngIf="registerForm?.get('email')?.errors?.['required']">email is required
+              </div>
+              <div *ngIf="registerForm?.get('email')?.errors?.['email']">email must be valid</div>
+
+            </div>
+          </div>
+
+
 
 
 

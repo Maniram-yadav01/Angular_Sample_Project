@@ -498,7 +498,7 @@ json-server --watch api.json
 
 ==============================================================================================================================================
 version 1.0.0
-1) Text box for searching base on name 
+1) Text box for searching base on name    -- done
 2)validation
      number field me string ko enter karne pr string enter no ho (use jquery and asscci code)
 
@@ -544,4 +544,92 @@ command for pipe:
           <td class="text-center zoom">{{item.email}}</td>
           
         </tr>
+==============================================================================================================================================
+
+
+==============================================================================================================================================
+how to use jquery
+npm install --save jquery
+npm install -D @types/jquery
+// import
+import * as $ from 'jquery';
+How to force Input field to enter numbers only using jquery
+     Link: https://www.nicesnippets.com/blog/how-to-allow-only-numbers-in-textbox-using-jquery
+==============================================================================================================================================
+---------------------------------------------------- How to force Input field to enter numbers only using jquery--------------------------------
+
+how to use jquery
+npm install --save jquery
+npm install -D @types/jquery
+// import
+import * as $ from 'jquery';
+
+Link: https://www.nicesnippets.com/blog/how-to-allow-only-numbers-in-textbox-using-jquery
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JQuery - Allow only numeric values in Textbox - nicesnippets.com</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</head>
+<body>
+   
+<div class="container">
+  <h1>JQuery - Allow only numeric values in Textbox - nicesnippets.com</h1>
+         
+      <label>Enter Value:</label>
+      <input type="text" name="myValue" class="allow-numeric" >
+      <span class="error" style="color: red; display: none">* Input digits (0 - 9)</span>
+    
+</div>
+    
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+      $(".allow-numeric").bind("keypress", function (e) {
+          var keyCode = e.which ? e.which : e.keyCode
+               
+          if (!(keyCode >= 48 && keyCode <= 57)) {
+            $(".error").css("display", "inline");
+            return false;
+          }else{
+            $(".error").css("display", "none");
+          }
+      });
+    });
+     
+</script>
+      
+</body>
+</html>
+
+==============================================================================================================================================
+====================================  How to force Input field to enter alphabet only using jquery ========================================================
+ 
+<html>
+  <head>
+    <title>JQuery - Allow only numeric values in Textbox - nicesnippets.com</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  </head>
+<body>
+    <input class="allow-numeric" />
+    <span class="error" style="color: red; display: none">* only alphabet (a - z)</span>
+    <script type="text/javascript">
+    
+
+    $(document).ready(function() {
+      $(".allow-numeric").bind("keypress", function (e) {
+          var keyCode = e.which ? e.which : e.keyCode
+               
+          if ((keyCode >= 48 && keyCode <= 57)) {
+            $(".error").css("display", "inline");
+            return false;
+          }else{
+            $(".error").css("display", "none");
+          }
+      });
+    });
+    </script>
+</body>
+</html>
 ==============================================================================================================================================

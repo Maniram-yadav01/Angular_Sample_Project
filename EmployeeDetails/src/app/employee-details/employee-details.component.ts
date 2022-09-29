@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { IData } from '../modals/IEmployees';
 import { EmployeeService } from '../service/employee.service';
 declare var window: any;
+// jquery 
+import * as $ from 'jquery';
+
+// interface
 export interface IEmployee {
   id: number,
   employee_name: any,
@@ -46,7 +50,7 @@ export class EmployeeDetailsComponent implements OnInit {
   deleteModal: any;
   deletedId: any;
   email: any;
-  filterText : string = ''; // for filter
+  filterText: string = ''; // for filter
 
   constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) { }
 
@@ -59,10 +63,10 @@ export class EmployeeDetailsComponent implements OnInit {
     // fetch employees data
     this.employee.getData().subscribe((res: any) => {
       this.data2 = res;
-      console.log("get"+this.data2[0].id);
+      console.log("get" + this.data2[0].id);
     });
-    console.log("after"+this.data2);
-    
+    console.log("after" + this.data2);
+
 
     // get images
     this.employee.getImage().subscribe((res: any) => {
@@ -87,15 +91,102 @@ export class EmployeeDetailsComponent implements OnInit {
     );
 
     this.registerForm = this.buildForm();
+
+    // jquery validation for id 
+    $(document).ready(function () {
+      $(".allow-numeric-id").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+          $(".error-id").css("display", "inline");
+          return false;
+        } else {
+          $(".error-id").css("display", "none");
+        }
+      });
+    });
+    // jquery validation for name
+    $(document).ready(function () {
+      $(".allow-alphabet-name").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+
+        if ((keyCode >= 48 && keyCode <= 57)) {
+          $(".error-name").css("display", "inline");
+          return false;
+        } else {
+          $(".error-name").css("display", "none");
+        }
+      });
+    });
+
+    
+
+     // jquery validation for age
+     $(document).ready(function () {
+      $(".allow-numeric-age").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+          $(".error-age").css("display", "inline");
+          return false;
+        } else {
+          $(".error-age").css("display", "none");
+        }
+      });
+    });
+
+     // jquery validation for salary
+     $(document).ready(function () {
+      $(".allow-numeric-salary").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+          $(".error-salary").css("display", "inline");
+          return false;
+        } else {
+          $(".error-salary").css("display", "none");
+          $().ready(function () {
+
+            // $('#salary').delay(1000);
+            // $('#salary').hide(1000);
+          });
+          
+        }
+      });
+    });
+
+    // jquery validation for salary
+     $(document).ready(function () {
+      $(".allow-numeric-salary").bind("keypress", function (e) {
+        var keyCode = e.which ? e.which : e.keyCode
+
+        if (!(keyCode >= 48 && keyCode <= 57)) {
+          $(".error-salary").css("display", "inline");
+          return false;
+        } else {
+          $(".error-salary").css("display", "none");
+          $().ready(function () {
+
+            // $('#salary').delay(1000);
+            // $('#salary').hide(1000);
+          });
+          
+        }
+      });
+    });
+
+    
+
+   
   }
   private buildForm() {
     return this.formBuilder.group({
 
-      id: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      id: ['', [Validators.required]],
       employee_name: ['', [Validators.required, Validators.pattern("^[a-zA-Z ]*$")]],
       employee_age: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       employee_salary: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      email: ['', [Validators.required,Validators.email]]
+      email: ['', [Validators.required, Validators.email]]
 
     });
   }
@@ -132,7 +223,7 @@ export class EmployeeDetailsComponent implements OnInit {
         this.employee_name = val.employee_name;
         this.employee_age = val.employee_age;
         this.employee_salary = val.employee_salary;
-         this.email = val.email;
+        this.email = val.email;
 
         this.registerForm = this.formBuilder.group({
 
@@ -181,7 +272,7 @@ export class EmployeeDetailsComponent implements OnInit {
   // delete record
   deleteRecord(id: any) {
     this.employee.deleteRecord(id).subscribe(data => {
-      console.log("deleted service"+data);
+      console.log("deleted service" + data);
     });
     window.location.reload();
     console.log("employee");
@@ -200,7 +291,7 @@ export class EmployeeDetailsComponent implements OnInit {
     }
     if (this.found) {
       this.employee.insertRecord(data);
-      
+
       alert("added");
       window.location.reload(); // for reload 
     }
