@@ -633,3 +633,30 @@ Link: https://www.nicesnippets.com/blog/how-to-allow-only-numbers-in-textbox-usi
 </body>
 </html>
 ==============================================================================================================================================
+                                date 30/09/2022
+
+ filterText is a pipe and filterText is input field, data2 json record
+ <!-- search filter for record empty -->
+        <ng-container *ngIf="( data2 | filterText : filterText) as result">
+          <p *ngIf="result.length === 0">No Result</p>  
+        </ng-container>
+
+
+==============================================================================================================================================
+if else
+
+<div *ngIf="totalNumberOfRecord>0;else emptyRecord">
+
+<ng-template #emptyRecord>
+  <div class="forEmptyRecord">Sorry no data found</div>
+</ng-template>
+
+==============================================================================================================================================
+
+
+==============================================================================================================================================
+
+work on pagination and * all filed required
+<span style="color: red">*</span>
+==============================================================================================================================================
+

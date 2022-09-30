@@ -1,5 +1,22 @@
+.search{
+    display: flex;
+}
+.filterLabel {
+    margin: 4px 10px 1px 122px;
+}
+.inputSearch {
+    margin: 2px auto 0px -6px;
+}
 .container {
     background-color: #9f7b8517;
+}
+.forEmptyRecord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: #afc9af;
+    height: 90vh;
 }
 
 .flex-box {
@@ -31,7 +48,10 @@
     float: none;
 
 }
-
+.searchEmpty {
+    display:  flex;
+    justify-content: center;
+}
 .text-align {
     text-align: right;
     margin-right: 179px;

@@ -1,87 +1,116 @@
-<div class="container">
-  <div class="jumpotron">
-    <!-- Filter -->
-    <div class="m-1">
-      <input type="email" class="form-control" [(ngModel)]="filterText" id="exampleInputEmail1"
-        aria-describedby="emailHelp" placeholder="search by name">
+<!-- if else  condition for empty or available -->
+<div *ngIf="totalNumberOfRecord>0;else emptyRecord">
+  <div class="container">
+    <div class="jumpotron">
+      <!-- Filter search by name   -->
+      <div class="m-1 search">
+        <div class="filterLabel"><label for="">Filter</label></div>
+        <div class="inputSearch"><input type="email" class="form-control" [(ngModel)]="filterText"
+            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="search by name" (input)="currentPageId()">
+        </div>
+
+      </div>
+      <!-- data are available -->
+      <ng-container *ngIf="( data2 | filterText : filterText) as result">
+        <div *ngIf="result.length > 0">
+
+
+          <h5 class="text-center">Employee Details</h5>
+
+
+
+
+          <table class="table  table-hover table-bordered table-sm table-wh">
+            <thead class="table-dark">
+              <tr>
+
+                <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="id">Id</th>
+                <th class="width" scope="col" [appSort]="data2" data-order="desc" data-name="employee_name">Name
+                  <!-- sorting icon using bootstrap -->
+                  <i class="bi bi-sort-alpha-down"></i>
+
+
+
+                </th>
+                <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_age">Age
+                  <!-- sorting icon using bootstrap -->
+                  <i class="bi bi-arrow-down-up"></i>
+                </th>
+
+                <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_salary">
+                  Salary
+                  <!-- sorting icon using bootstrap -->
+                  <i class="bi bi-arrow-down-up"></i>
+                </th>
+                <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="email">Email
+                  <!-- sorting icon using bootstrap -->
+                  <i class="bi bi-arrow-down-up"></i>
+                </th>
+                <th class="text-center" scope="col">Get Details</th>
+                <th class="text-center width-m" scope="col">Modify</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr class=""
+                *ngFor="let item of data2 | filterText : filterText  | paginate: { itemsPerPage: count, currentPage: p } ">
+                <!-- let i = index -->
+                <td class="text-center zoom">{{item.id}}</td>
+                <td class="zoom">{{item.employee_name}}</td>
+                <td class="text-center zoom">{{item.employee_age}}</td>
+                <td class="text-center zoom">{{item.employee_salary}}</td>
+                <td class="text-center zoom">{{item.email}}</td>
+                <td class="text-center ">
+                  <a (click)="openMadal(item.id,item.employee_name)">
+                    <i class="fa-solid fa-circle-info text-left">
+                    </i>
+                  </a>
+                </td>
+                <td class="text-center">
+                  <!-- edit button -->
+                  <button type="button" class="btn btn-primary " (click)="openEditMadal(item.id)">
+                    <i class="fa-solid fa-pen-to-square"></i></button>
+                  <!-- delete button -->
+                  <button type="button" class="btn btn-danger m-1" (click)="openDeleteMadal(item.id)"><i
+                      class="fa-solid fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+
+              </tr>
+
+            </tbody>
+
+
+          </table>
+
+          <div class="text-center" *ngIf="result.length>5">
+
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+          <!-- </ng-template> -->
+
+
+        </div>
+        <!-- search filter are empty  -->
+        <div class="searchEmpty" *ngIf="result.length === 0">
+          No Result
+        </div>
+      </ng-container>
+
+      <!-- add employees button -->
+      <div class="text-align">
+        <button type="button " class="btn btn-success m-1" (click)="openMadalAddEmployeee()">Add Employees</button>
+      </div>
 
     </div>
-
-    <h5 class="text-center">Employee Details</h5>
-
-
-
-
-    <table class="table  table-hover table-bordered table-sm table-wh">
-      <thead class="table-dark">
-        <tr>
-
-          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="id">Id</th>
-          <th class="width" scope="col" [appSort]="data2" data-order="desc" data-name="employee_name">Name
-            <!-- sorting icon using bootstrap -->
-            <i class="bi bi-sort-alpha-down"></i>
-
-
-
-          </th>
-          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_age">Age
-            <!-- sorting icon using bootstrap -->
-            <i class="bi bi-arrow-down-up"></i>
-          </th>
-
-          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="employee_salary">Salary
-            <!-- sorting icon using bootstrap -->
-            <i class="bi bi-arrow-down-up"></i>
-          </th>
-          <th class="text-center " scope="col" [appSort]="data2" data-order="desc" data-name="email">Email
-            <!-- sorting icon using bootstrap -->
-            <i class="bi bi-arrow-down-up"></i>
-          </th>
-          <th class="text-center" scope="col">Get Details</th>
-          <th class="text-center width-m" scope="col">Modify</th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <tr class=""
-          *ngFor="let item of data2 | paginate: { itemsPerPage: count, currentPage: p } | filterText : filterText ; let i = index ">
-
-          <td class="text-center zoom">{{item.id}}</td>
-          <td class="zoom">{{item.employee_name}}</td>
-          <td class="text-center zoom">{{item.employee_age}}</td>
-          <td class="text-center zoom">{{item.employee_salary}}</td>
-          <td class="text-center zoom">{{item.email}}</td>
-          <td class="text-center ">
-            <a (click)="openMadal(item.id,item.employee_name)">
-              <i class="fa-solid fa-circle-info text-left">
-              </i>
-            </a>
-          </td>
-          <td class="text-center">
-            <!-- edit button -->
-            <button type="button" class="btn btn-primary " (click)="openEditMadal(item.id)">
-              <i class="fa-solid fa-pen-to-square"></i></button>
-            <!-- delete button -->
-            <button type="button" class="btn btn-danger m-1" (click)="openDeleteMadal(item.id)"><i
-                class="fa-solid fa-trash"></i></button>
-          </td>
-        </tr>
-        <tr>
-
-        </tr>
-
-      </tbody>
-    </table>
-    <div class="text-center">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
-    <div class="text-align">
-      <!-- <button type="button " class="btn btn-primary" (click)="getapi()">Reset</button> -->
-      <button type="button " class="btn btn-success m-1" (click)="openMadalAddEmployeee()">Add Employees</button>
-    </div>
-
   </div>
 </div>
+
+<!-- if record are empty  -->
+<ng-template #emptyRecord>
+  <div class="forEmptyRecord">Sorry no data found</div>
+</ng-template>
 
 
 
@@ -178,7 +207,7 @@
         <form [formGroup]="registerForm">
           <!-- id -->
           <div class="mb-3">
-            <label for="id" class="form-label">Id</label>
+            <label for="id" class="form-label"><span style="color: red">*</span> Id</label>
             <!-- jquery validation -->
             <input type="id" formControlName="id" class="form-control allow-numeric-id" id="id" placeholder="id"
               [ngClass]="{'is-invalid': (registerForm.get('id')?.dirty ||  registerForm.get('id')?.touched) && registerForm.get('id')?.errors}">
@@ -194,7 +223,7 @@
           </div>
           <!-- employee_name -->
           <div class="mb-3">
-            <label for="employee_name" class="form-label">Employee Name</label>
+            <label for="employee_name" class="form-label"><span style="color: red">*</span> Employee Name</label>
             <input type="text" formControlName="employee_name" class="form-control allow-alphabet-name"
               id="employee_name" placeholder="employee_name"
               [ngClass]="{'is-invalid': (registerForm.get('employee_name')?.dirty ||  registerForm.get('employee_name')?.touched) && registerForm.get('employee_name')?.errors}">
@@ -209,7 +238,7 @@
           </div>
           <!-- employee_age -->
           <div class="mb-3">
-            <label for="employee_age" class="form-label">Employee Age</label>
+            <label for="employee_age" class="form-label"><span style="color: red">*</span> Employee Age</label>
             <input type="text" formControlName="employee_age" class="form-control allow-numeric-age" id="employee_age"
               placeholder="employee_age"
               [ngClass]="{'is-invalid': (registerForm?.get('employee_age')?.dirty || registerForm.get('employee_age')?.touched) && registerForm.get('employee_age')?.errors}">
@@ -224,7 +253,7 @@
           </div>
           <!-- employee_salary -->
           <div class="mb-3">
-            <label for="employee_salary" class="form-label">employee_salary</label>
+            <label for="employee_salary" class="form-label"><span style="color: red">*</span> employee_salary</label>
             <input type="id" formControlName="employee_salary" class="form-control allow-numeric-salary" id="id"
               placeholder="employee_salary"
               [ngClass]="{'is-invalid': (registerForm?.get('employee_salary')?.dirty || registerForm.get('employee_salary')?.touched) && registerForm.get('employee_salary')?.errors}">
@@ -240,7 +269,7 @@
           </div>
           <!-- email -->
           <div class="mb-3">
-            <label for="employee_salary" class="form-label">Email</label>
+            <label for="employee_salary" class="form-label"><span style="color: red">*</span> Email</label>
             <input type="id" formControlName="email" class="form-control" id="id" placeholder="email"
               [ngClass]="{'is-invalid': (registerForm?.get('email')?.dirty || registerForm.get('email')?.touched) && registerForm.get('email')?.errors}">
             <div
@@ -252,6 +281,7 @@
 
             </div>
           </div>
+          <span style="color: red">* all field are required</span>
         </form>
       </div>
       <div class="modal-footer">
@@ -279,7 +309,7 @@
         <form [formGroup]="registerForm">
           <!-- Id -->
           <div class="mb-3">
-            <label for="id" class="form-label">Id</label>
+            <label for="id" class="form-label"><span style="color: red">*</span>Id</label>
             <input type="id" formControlName="id" class="form-control" id="id" placeholder="id"
               [ngClass]="{'is-invalid': registerForm.get('id')?.touched && registerForm.get('id')?.errors}" readonly>
             <div *ngIf="registerForm?.get('id')?.touched && registerForm?.get('id')?.errors" class="invalid-feedback">
@@ -289,7 +319,7 @@
           </div>
           <!-- employee_name  -->
           <div class="mb-3">
-            <label for="employee_name" class="form-label">Name</label>
+            <label for="employee_name" class="form-label"><span style="color: red">*</span> Name</label>
             <input class="form-control allow-alphabet-name" type="employee_name" formControlName="employee_name"
               id="employee_name" placeholder="employee_name"
               [ngClass]="{'is-invalid': registerForm.get('employee_name')?.dirty && registerForm.get('employee_name')?.errors}">
@@ -305,11 +335,11 @@
           </div>
           <!-- employee_age -->
           <div class="mb-3">
-            <label for="employee_age" class="form-label">Age</label>
+            <label for="employee_age" class="form-label"><span style="color: red">*</span> Age</label>
             <input type="text" formControlName="employee_age" class="form-control allow-numeric-age" id="employee_age"
               placeholder="employee_age"
               [ngClass]="{'is-invalid': registerForm.get('employee_age')?.dirty && registerForm.get('employee_age')?.errors}">
-              <span class="error-age" style="color: red; display: none" id="salary">* only number</span>
+            <span class="error-age" style="color: red; display: none" id="salary">* only number</span>
             <div *ngIf="registerForm?.get('employee_age')?.dirty && registerForm?.get('employee_age')?.errors"
               class="invalid-feedback">
               <!-- <div *ngIf="registerForm?.get('employee_age')?.errors?.['required']">employee_age is required</div>
@@ -320,11 +350,11 @@
           </div>
           <!-- employee_salary -->
           <div class="mb-3">
-            <label for="employee_salary" class="form-label">Salary</label>
+            <label for="employee_salary" class="form-label"><span style="color: red">*</span> Salary</label>
             <input type="text" formControlName="employee_salary" class="form-control allow-numeric-salary"
               id="employee_salary" placeholder="employee_salary"
               [ngClass]="{'is-invalid': registerForm.get('employee_salary')?.dirty && registerForm.get('employee_salary')?.errors}">
-              <span class="error-salary" style="color: red; display: none" id="salary">* only number</span>
+            <span class="error-salary" style="color: red; display: none" id="salary">* only number</span>
             <div *ngIf="registerForm?.get('employee_salary')?.dirty && registerForm?.get('employee_salary')?.errors"
               class="invalid-feedback">
               <!-- <div *ngIf="registerForm?.get('employee_salary')?.errors?.['required']">Salary is required
@@ -335,7 +365,7 @@
           </div>
           <!-- email -->
           <div class="mb-3">
-            <label for="employee_salary" class="form-label">Email</label>
+            <label for="employee_salary" class="form-label"><span style="color: red">*</span>Email</label>
             <input type="text" formControlName="email" class="form-control" id="email" placeholder="email"
               [ngClass]="{'is-invalid': registerForm.get('email')?.dirty && registerForm.get('email')?.errors}">
             <div *ngIf="registerForm?.get('email')?.dirty && registerForm?.get('email')?.errors"
@@ -346,6 +376,7 @@
 
             </div>
           </div>
+          <span style="color: red">* all field are required</span>
 
 
 

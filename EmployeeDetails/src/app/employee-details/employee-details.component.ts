@@ -27,6 +27,7 @@ export class EmployeeDetailsComponent implements OnInit {
   public employeeimage: any = [];
 
   p: any = 1;
+  page: any = 1;
   count: any = 5;
   EmpId: any;
   pageSizeOptions = "[5, 10, 25, 100]"
@@ -51,6 +52,7 @@ export class EmployeeDetailsComponent implements OnInit {
   deletedId: any;
   email: any;
   filterText: string = ''; // for filter
+  totalNumberOfRecord: any // count all record
 
   constructor(private formBuilder: FormBuilder, private employee: EmployeeService, private router: Router) { }
 
@@ -63,9 +65,11 @@ export class EmployeeDetailsComponent implements OnInit {
     // fetch employees data
     this.employee.getData().subscribe((res: any) => {
       this.data2 = res;
-      console.log("get" + this.data2[0].id);
+
+      this.totalNumberOfRecord = Object.keys(this.data2).length;
+      console.log("total numbet" + this.totalNumberOfRecord)
     });
-    console.log("after" + this.data2);
+
 
 
     // get images
@@ -119,10 +123,10 @@ export class EmployeeDetailsComponent implements OnInit {
       });
     });
 
-    
 
-     // jquery validation for age
-     $(document).ready(function () {
+
+    // jquery validation for age
+    $(document).ready(function () {
       $(".allow-numeric-age").bind("keypress", function (e) {
         var keyCode = e.which ? e.which : e.keyCode
 
@@ -135,8 +139,8 @@ export class EmployeeDetailsComponent implements OnInit {
       });
     });
 
-     // jquery validation for salary
-     $(document).ready(function () {
+    // jquery validation for salary
+    $(document).ready(function () {
       $(".allow-numeric-salary").bind("keypress", function (e) {
         var keyCode = e.which ? e.which : e.keyCode
 
@@ -150,13 +154,13 @@ export class EmployeeDetailsComponent implements OnInit {
             // $('#salary').delay(1000);
             // $('#salary').hide(1000);
           });
-          
+
         }
       });
     });
 
     // jquery validation for salary
-     $(document).ready(function () {
+    $(document).ready(function () {
       $(".allow-numeric-salary").bind("keypress", function (e) {
         var keyCode = e.which ? e.which : e.keyCode
 
@@ -170,14 +174,14 @@ export class EmployeeDetailsComponent implements OnInit {
             // $('#salary').delay(1000);
             // $('#salary').hide(1000);
           });
-          
+
         }
       });
     });
 
-    
 
-   
+
+
   }
   private buildForm() {
     return this.formBuilder.group({
@@ -295,5 +299,11 @@ export class EmployeeDetailsComponent implements OnInit {
       alert("added");
       window.location.reload(); // for reload 
     }
+  }
+  //  need for currentPage number change
+  currentPageId() {
+    
+    this.p = this.page;
+
   }
 }
